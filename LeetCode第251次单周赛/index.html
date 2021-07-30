@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, Scholar&#39;s Blog">
+    <meta name="keywords" content="LeetCode第251次单周赛, Scholar&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | Scholar&#39;s Blog</title>
+    <title>LeetCode第251次单周赛 | Scholar&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">LeetCode第251次单周赛</h1>
                 </div>
             </div>
         </div>
@@ -443,28 +443,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-07-05
+                    2021-07-25
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-05-29
+                    2021-07-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    2.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    10 分
                 </div>
                 
 
@@ -487,19 +487,198 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h1 id="A-字符串转化后的各位数字之和"><a href="#A-字符串转化后的各位数字之和" class="headerlink" title="A.字符串转化后的各位数字之和"></a>A.字符串转化后的各位数字之和</h1><p>给你一个由小写字母组成的字符串 s ，以及一个整数 k 。</p>
+<p>首先，用字母在字母表中的位置替换该字母，将 s 转化 为一个整数（也就是，’a’ 用 1 替换，’b’ 用 2 替换，… ‘z’ 用 26 替换）。接着，将整数 转换 为其 各位数字之和 。共重复 转换 操作 k 次 。</p>
+<p>例如，如果 s = “zbax” 且 k = 2 ，那么执行下述步骤后得到的结果是整数 8 ：</p>
+<p>转化：”zbax” ➝ “(26)(2)(1)(24)” ➝ “262124” ➝ 262124<br>转换 #1：262124 ➝ 2 + 6 + 2 + 1 + 2 + 4 ➝ 17<br>转换 #2：17 ➝ 1 + 7 ➝ 8<br>返回执行上述操作后得到的结果整数。</p>
+<ul>
+<li>来源：力扣（LeetCode）</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-digits-of-string-after-convert">https://leetcode-cn.com/problems/sum-of-digits-of-string-after-convert</a></li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>由于是leetcode周赛，所以输入输出就不用自己阐述了</p>
+<p>输入：s = “leetcode”, k = 2<br>输出：6<br>解释：操作如下：</p>
+<ul>
+<li>转化：”leetcode” ➝ “(12)(5)(5)(20)(3)(15)(4)(5)” ➝ “12552031545” ➝ 12552031545</li>
+<li>转换 #1：12552031545 ➝ 1 + 2 + 5 + 5 + 2 + 0 + 3 + 1 + 5 + 4 + 5 ➝ 33</li>
+<li>转换 #2：33 ➝ 3 + 3 ➝ 6<br>  因此，结果整数为 6 。</li>
+</ul>
+<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">class Solution &#123;
+public:
+    int getLucky(string s, int k) &#123;
+        int t &#x3D; 0;
+        for (char c: s) &#123;
+            int x &#x3D; c - &#39;a&#39; + 1;
+            t +&#x3D; x % 10;
+            t +&#x3D; x &#x2F; 10;
+        &#125;
+        for (int i &#x3D; 1;i &lt; k;++i) &#123;
+            int r &#x3D; 0;
+            while (t &gt; 0) &#123;
+                r +&#x3D; t % 10;
+                t &#x2F;&#x3D; 10;
+            &#125;
+            t &#x3D; r;
+        &#125;
+        return t;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>提示：<br>将原字符串进行一次处理，之后的处理全部转换为int类型变量处理。</p>
+<h1 id="B-子字符串突变后可能得到的最大整数"><a href="#B-子字符串突变后可能得到的最大整数" class="headerlink" title="B.子字符串突变后可能得到的最大整数"></a>B.子字符串突变后可能得到的最大整数</h1><p>给你一个字符串 num ，该字符串表示一个大整数。另给你一个长度为 10 且 下标从 0  开始 的整数数组 change ，该数组将 0-9 中的每个数字映射到另一个数字。更规范的说法是，数字 d 映射为数字 change[d] 。</p>
+<p>你可以选择 突变  num 的任一子字符串。突变 子字符串意味着将每位数字 num[i] 替换为该数字在 change 中的映射（也就是说，将 num[i] 替换为 change[num[i]]）。</p>
+<p>请你找出在对 num 的任一子字符串执行突变操作（也可以不执行）后，可能得到的 最大整数 ，并用字符串表示返回。</p>
+<p>子字符串 是字符串中的一个连续序列。</p>
+<ul>
+<li>来源：力扣（LeetCode）</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/largest-number-after-mutating-substring">https://leetcode-cn.com/problems/largest-number-after-mutating-substring</a></li>
+</ul>
+<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h2><p>输入：num = “021”, change = [9,4,3,5,7,2,1,9,0,6]<br>输出：”934”<br>解释：替换子字符串 “021”：</p>
+<ul>
+<li>0 映射为 change[0] = 9 。</li>
+<li>2 映射为 change[2] = 3 。</li>
+<li>1 映射为 change[1] = 4 。<br>因此，”021” 变为 “934” 。<br>“934” 是可以构造的最大整数，所以返回它的字符串表示。<h2 id="AC代码一"><a href="#AC代码一" class="headerlink" title="AC代码一"></a>AC代码一</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
+public:
+    string maximumNumber(string num, vector&lt;int&gt;&amp; change) &#123;
+        int n &#x3D; num.size();
+        int hash[100005] &#x3D; &#123;0&#125;;
+        int flag &#x3D; 1;
+        for(int i &#x3D; 0;i &lt; num.size();i++)&#123;
+            if(flag &#x3D;&#x3D; 1 || (i &gt; 0 &amp;&amp; hash[i-1] &gt;&#x3D; 1))&#123;
+                if(num[i] - &#39;0&#39; &lt; change[num[i] - &#39;0&#39;])&#123; 
+                    flag &#x3D; 0;
+                    num[i] &#x3D; change[num[i] - &#39;0&#39;] + &#39;0&#39;;
+                    hash[i]++;
+                &#125;else if(num[i] - &#39;0&#39; &#x3D;&#x3D; change[num[i] - &#39;0&#39;])
+                         hash[i]++;
+            &#125;
+        &#125;
+        return num;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+提示：<br>子字符串进行操作，且寻找最大值，由前往后判断，当且仅当只有连续的才能进行改变。<h2 id="AC代码二"><a href="#AC代码二" class="headerlink" title="AC代码二"></a>AC代码二</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
+public:
+    string maximumNumber(string num, vector&lt;int&gt;&amp; change) &#123;
+        int n &#x3D; num.size();
+        bool start &#x3D; false;
+        for (int i&#x3D;0; i&lt;n; ++i) &#123;
+            int x &#x3D; num[i] - &#39;0&#39;;
+            if (change[x] &gt; x) &#123;
+                start &#x3D; true;
+            &#125;
+            if (change[x] &lt; x) &#123;
+                if (start) return num;   
+            &#125;
+            if (start) &#123;
+                num[i] &#x3D; &#39;0&#39; + change[x];
+            &#125;
+        &#125;
+        return num;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="C-最大兼容性评分和"><a href="#C-最大兼容性评分和" class="headerlink" title="C.最大兼容性评分和"></a>C.最大兼容性评分和</h1>有一份由 n 个问题组成的调查问卷，每个问题的答案要么是 0（no，否），要么是 1（yes，是）。</li>
+</ul>
+<p>这份调查问卷被分发给 m 名学生和 m 名导师，学生和导师的编号都是从 0 到 m - 1 。学生的答案用一个二维整数数组 students 表示，其中 students[i] 是一个整数数组，包含第 i 名学生对调查问卷给出的答案（下标从 0 开始）。导师的答案用一个二维整数数组 mentors 表示，其中 mentors[j] 是一个整数数组，包含第 j 名导师对调查问卷给出的答案（下标从 0 开始）。</p>
+<p>每个学生都会被分配给 一名 导师，而每位导师也会分配到 一名 学生。配对的学生与导师之间的兼容性评分等于学生和导师答案相同的次数。</p>
+<p>例如，学生答案为[1, 0, 1] 而导师答案为 [0, 0, 1] ，那么他们的兼容性评分为 2 ，因为只有第二个和第三个答案相同。<br>请你找出最优的学生与导师的配对方案，以 最大程度上 提高 兼容性评分和 。</p>
+<p>给你 students 和 mentors ，返回可以得到的 最大兼容性评分和 。</p>
+<ul>
+<li>来源：力扣（LeetCode）</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-compatibility-score-sum">https://leetcode-cn.com/problems/maximum-compatibility-score-sum</a></li>
+</ul>
+<h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h2><p>输入：students = [[[[1,1,0],[1,0,1],[0,0,1]]]], mentors = [[[[1,0,0],[0,0,1],[1,1,0]]]]<br>输出：8<br>解释：按下述方式分配学生和导师：</p>
+<ul>
+<li>学生 0 分配给导师 2 ，兼容性评分为 3 。</li>
+<li>学生 1 分配给导师 0 ，兼容性评分为 2 。</li>
+<li>学生 2 分配给导师 1 ，兼容性评分为 3 。<br>最大兼容性评分和为 3 + 2 + 3 = 8 。<h2 id="AC代码-1"><a href="#AC代码-1" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
+public:
+    int maxCompatibilitySum(vector&lt;vector&lt;int&gt;&gt;&amp; a, vector&lt;vector&lt;int&gt;&gt;&amp; b) &#123;
+        int n &#x3D; a.size(), m &#x3D; a[0].size();
+        vector&lt;int&gt; c(n), d(n);
+        for (int i &#x3D; 0; i &lt; n; ++i)
+            for (int j &#x3D; 0; j &lt; m; ++j)
+                c[i] |&#x3D; a[i][j] &lt;&lt; j, d[i] |&#x3D; b[i][j] &lt;&lt; j;
+        vector&lt;int&gt; e(n);
+        iota(e.begin(), e.end(), 0);
+        int ans &#x3D; 0;
+        do &#123;
+            int t &#x3D; 0;
+            for (int i &#x3D; 0; i &lt; n; ++i)
+                t +&#x3D; m - __builtin_popcount(c[i] ^ d[e[i]]);
+            ans &#x3D; max(ans, t);
+        &#125; while (next_permutation(e.begin(), e.end()));
+        return ans;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+D.删除系统中的重复文件夹<br>由于一个漏洞，文件系统中存在许多重复文件夹。给你一个二维数组 paths，其中 paths[i] 是一个表示文件系统中第 i 个文件夹的绝对路径的数组。</li>
+</ul>
+<p>例如，[“one”, “two”, “three”] 表示路径 “/one/two/three” 。<br>如果两个文件夹（不需要在同一层级）包含 非空且相同的 子文件夹 集合 并具有相同的子文件夹结构，则认为这两个文件夹是相同文件夹。相同文件夹的根层级 不 需要相同。如果存在两个（或两个以上）相同 文件夹，则需要将这些文件夹和所有它们的子文件夹 标记 为待删除。</p>
+<p>例如，下面文件结构中的文件夹 “/a” 和 “/b” 相同。它们（以及它们的子文件夹）应该被 全部 标记为待删除：</p>
+<ul>
+<li>/a</li>
+<li>/a/x</li>
+<li>/a/x/y</li>
+<li>/a/z</li>
+<li>/b</li>
+<li>/b/x</li>
+<li>/b/x/y</li>
+<li>/b/z</li>
+</ul>
+<p>然而，如果文件结构中还包含路径 “/b/w” ，那么文件夹 “/a” 和 “/b” 就不相同。注意，即便添加了新的文件夹 “/b/w” ，仍然认为 “/a/x” 和 “/b/x” 相同。<br>一旦所有的相同文件夹和它们的子文件夹都被标记为待删除，文件系统将会 删除 所有上述文件夹。文件系统只会执行一次删除操作。执行完这一次删除操作后，不会删除新出现的相同文件夹。</p>
+<p>返回二维数组 ans ，该数组包含删除所有标记文件夹之后剩余文件夹的路径。路径可以按 任意顺序 返回。</p>
+<ul>
+<li>来源：力扣（LeetCode）</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/delete-duplicate-folders-in-system">https://leetcode-cn.com/problems/delete-duplicate-folders-in-system</a><h2 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h2><img src="https://assets.leetcode.com/uploads/2021/07/19/lc-dupfolder1.jpg" alt="这是图片" title="Magic Gardens"></li>
+</ul>
+<p>输入：paths = [[“a”],[“c”],[“d”],[“a”,”b”],[“c”,”b”],[“d”,”a”]]<br>输出：[[“d”],[“d”,”a”]]<br>解释：文件结构如上所示。<br>文件夹 “/a” 和 “/c”（以及它们的子文件夹）都会被标记为待删除，因为它们都包含名为 “b” 的空文件夹。</p>
+<h2 id="AC代码-2"><a href="#AC代码-2" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
+public:
+    vector&lt;vector&lt;string&gt;&gt; deleteDuplicateFolder(vector&lt;vector&lt;string&gt;&gt;&amp; a) &#123;
+        int n &#x3D; a.size();
+        sort(a.begin(), a.end());
+        vector&lt;map&lt;string, int&gt;&gt; b(1);
+        for (auto&amp; x: a)&#123;
+            int u &#x3D; 0;
+            for (int i &#x3D; 0; i + 1 &lt; x.size(); ++i)
+                u &#x3D; b[u][x[i]];
+            b[u][x.back()] &#x3D; b.size();
+            b.emplace_back();
+        &#125;
+        
+        vector&lt;int&gt; c(n + 1, 0);
+        map&lt;map&lt;string, int&gt;, int&gt; d;
+        vector&lt;int&gt; mark(n + 1, 0);
+        d[&#123;&#125;] &#x3D; 0;
+        for (int i &#x3D; n; i &gt; 0; --i)&#123;
+            if (b[i].empty()) c[i] &#x3D; 0;
+            else &#123;
+                map&lt;string, int&gt; x;
+                for (auto&amp; pr: b[i])
+                    x.emplace(pr.first, c[pr.second]);
+                if (d.count(x))
+                    c[i] &#x3D; d[x];
+                else
+                    c[i] &#x3D; d.size(), d[x] &#x3D; c[i];
+            &#125;
+            printf(&quot;%d %d\n&quot;, i, c[i]);
+        &#125;
+        
+        map&lt;int, int&gt; lst;
+        for (int i &#x3D; 1; i &lt;&#x3D; n; ++i) ++lst[c[i]];
+        for (int i &#x3D; 1; i &lt;&#x3D; n; ++i)&#123;
+            if (!mark[i] &amp;&amp; c[i] &gt; 0 &amp;&amp; lst[c[i]] &gt; 1)
+                mark[i] &#x3D; 1;
+            
+            if (mark[i])
+            for (auto&amp; pr: b[i])
+                mark[pr.second] &#x3D; 1;
+        &#125;
+        vector&lt;vector&lt;string&gt;&gt; ans;
+        for (int i &#x3D; 1; i &lt;&#x3D; n; ++i)
+            if (!mark[i])
+                ans.push_back(a[i - 1]);
+        return ans;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>A,B两题较为基础<br>C题数量级较小，可以暴力解法。<br>D题难度较大，放弃。</p>
 
                 
             </div>
@@ -516,7 +695,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">scholar</a>
+                    <a href="/about" rel="external nofollow noreferrer">曹毅</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -526,7 +705,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://scholar18.github.io/hello-world/">https://scholar18.github.io/hello-world/</a>
+                    <a href="https://scholar18.github.io/LeetCode%E7%AC%AC251%E6%AC%A1%E5%8D%95%E5%91%A8%E8%B5%9B/">https://scholar18.github.io/LeetCode%E7%AC%AC251%E6%AC%A1%E5%8D%95%E5%91%A8%E8%B5%9B/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -539,7 +718,7 @@
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="/about" target="_blank">scholar</a>
+                    <a href="/about" target="_blank">曹毅</a>
                     !
                 </span>
             </div>
@@ -611,13 +790,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/Python%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                <a href="/%E5%BE%97%E5%88%B0%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Python第二章笔记">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="得到子序列的最少操作次数">
                         
-                        <span class="card-title">Python第二章笔记</span>
+                        <span class="card-title">得到子序列的最少操作次数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -628,7 +807,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-05
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-26
                         </span>
                         <span class="publish-author">
                             
@@ -645,16 +824,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/hello-world/">
+                <a href="/%E4%BB%8E%E7%9B%B8%E9%82%BB%E5%85%83%E7%B4%A0%E5%AF%B9%E8%BF%98%E5%8E%9F%E6%95%B0%E7%BB%84/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="从相邻元素对还原数组">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">从相邻元素对还原数组</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -665,17 +844,16 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            scholar
+                            曹毅
                             
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>

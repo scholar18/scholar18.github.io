@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, Scholar&#39;s Blog">
+    <meta name="keywords" content="Python第二章笔记, Scholar&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | Scholar&#39;s Blog</title>
+    <title>Python第二章笔记 | Scholar&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">Python第二章笔记</h1>
                 </div>
             </div>
         </div>
@@ -450,21 +450,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-05-29
+                    2021-07-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -487,19 +487,58 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h1 id="变量和简单数据类型"><a href="#变量和简单数据类型" class="headerlink" title="变量和简单数据类型"></a>变量和简单数据类型</h1><h2 id="变量的命名"><a href="#变量的命名" class="headerlink" title="变量的命名"></a>变量的命名</h2><p>变量名只能包含数字、字母、下划线，且不能以<strong>数字做开头</strong>.</p>
+<p>变量名不能包含<strong>空格</strong>，且不能使用Python关键字</p>
+<p>变量名应具体，使人一眼就明白该变量的含义</p>
+<p>变量名不应使用<strong>0，1</strong> .易与<strong>o，l</strong>搞混</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>字符串即一系列字符，在Python中用<strong>双撇号””或单撇号’ ‘括</strong>起来的都是字符串</p>
+<ul>
+<li>在使用字符串是应注意</li>
+<li>外围使用””时，内部不应再次使用””,易发生混乱。</li>
+<li>外围使用’’时，内部也不应使用’’.</li>
+</ul>
+<p>下面是一些有关字符串的函数</p>
+<p>以下字符串同一用 name 表示</p>
+<ul>
+<li><p>name.title() #使每个单词的首字母大写</p>
+</li>
+<li><p>name.upper() #将所有字母改为大写字母</p>
+</li>
+<li><p>name.lower() #将所有字母改为小写字母</p>
+</li>
+<li><p>name = f”{name1} {name}”<br>将class1与class2连接起来，每个字符串用{}括起来，在每个{}之间或者说在””内的个个地方都可以插入一些字符串。<br>(f字符串是在Python3.6版本引入，在3.5及更早版本无法使用，可以</p>
+</li>
+<li><p>使用format())<br>例：full_name = “{} {}”.format(first_name,last_name)<br>  用法与f字符串类似，这里不做过多解释</p>
+</li>
+<li><p>name.rstrip() #可暂时删除字符串末尾的空白若要永久删除，应将删除操作的结果关联到变量：</p>
+</li>
+<li><p>name = name.rstrip() #就可以永久删除空白</p>
+</li>
+<li><p>name.lstrip() #可暂时删除字符串开头的空白</p>
+</li>
+<li><p>name.strip()  #可暂时删除字符串两侧的空白</p>
+</li>
+</ul>
+<h2 id="整数与浮点数"><a href="#整数与浮点数" class="headerlink" title="整数与浮点数"></a>整数与浮点数</h2><p>Python中的整数包括正整数，0，负整数。<br>奇妙的是，Python中整数的值是可以无限大的，当取值超过计算机自身的计算能力时，Python 会自动转用高精度计算（大数计算）。这使得在计算高精度时，Python有着天然的优势。</p>
+<p>当数值过大时，我们可以在其中添加<strong>下划线</strong>来使数更加易读，例：14_000_000_000与14000000000没有任何区别。</p>
+<p>关于运算</p>
+<ul>
+<li>+，-，*与其他语言类似，不做阐述</li>
+<li>**代表乘方运算</li>
+<li>/代表除法，任意两个数相除，结果一定是浮点数.</li>
+<li>//也是除法，但结果是整数，且为向下取整。</li>
+<li>% 为取余运算</li>
+</ul>
+<p>记：python支持同时给多个变量同时赋值,但要保证前后个数相等</p>
+<h3 id="x-y-z-1-2-3"><a href="#x-y-z-1-2-3" class="headerlink" title="x,y,z = 1,2,3"></a>x,y,z = 1,2,3</h3><h2 id="Python之禅"><a href="#Python之禅" class="headerlink" title="Python之禅"></a>Python之禅</h2><p>The Zen of Python, by Tim Peters</p>
+<p>Beautiful is better than ugly.<br>Explicit is better than implicit.<br>Simple is better than complex.<br>Complex is better than complicated.<br>Flat is better than nested.<br>Sparse is better than dense.<br>Readability counts.<br>Special cases aren’t special enough to break the rules.<br>Although practicality beats purity.<br>Errors should never pass silently.<br>Unless explicitly silenced.<br>In the face of ambiguity, refuse the temptation to guess.<br>There should be one– and preferably only one –obvious way to do it.<br>Although that way may not be obvious at first unless you’re Dutch.<br>Now is better than never.<br>Although never is often better than <em>right</em> now.<br>If the implementation is hard to explain, it’s a bad idea.<br>If the implementation is easy to explain, it may be a good idea.<br>Namespaces are one honking great idea – let’s do more of those!</p>
+<p>下面为中文翻译：<br>Python之禅 by Tim Peters</p>
+<p>优美胜于丑陋（Python 以编写优美的代码为目标）<br>    明了胜于晦涩（优美的代码应当是明了的，命名规范，风格相似）<br>    简洁胜于复杂（优美的代码应当是简洁的，不要有复杂的内部实现）<br>    复杂胜于凌乱（如果复杂不可避免，那代码间也不能有难懂的关系，要保持接口简洁）<br>    扁平胜于嵌套（优美的代码应当是扁平的，不能有太多的嵌套）<br>    间隔胜于紧凑（优美的代码有适当的间隔，不要奢望一行代码解决问题）<br>    可读性很重要（优美的代码是可读的）<br>    即便假借特例的实用性之名，也不可违背这些规则（这些规则至高无上）</p>
+<p>不要包容所有错误，除非你确定需要这样做（精准地捕获异常，不写 except:pass 风格的代码）</p>
+<p>当存在多种可能，不要尝试去猜测<br>而是尽量找一种，最好是唯一一种明显的解决方案（如果不确定，就用穷举法）<br>虽然这并不容易，因为你不是 Python 之父（这里的 Dutch 是指 Guido ）</p>
+<p>做也许好过不做，但不假思索就动手还不如不做（动手之前要细思量）</p>
+<p>如果你无法向人描述你的方案，那肯定不是一个好方案；反之亦然（方案测评标准）</p>
+<p>命名空间是一种绝妙的理念，我们应当多加利用（倡导与号召）</p>
 
                 
             </div>
@@ -516,7 +555,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">scholar</a>
+                    <a href="/about" rel="external nofollow noreferrer">曹毅</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -526,7 +565,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://scholar18.github.io/hello-world/">https://scholar18.github.io/hello-world/</a>
+                    <a href="https://scholar18.github.io/Python%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://scholar18.github.io/Python%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -539,7 +578,7 @@
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="/about" target="_blank">scholar</a>
+                    <a href="/about" target="_blank">曹毅</a>
                     !
                 </span>
             </div>
@@ -611,13 +650,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/Python%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                <a href="/%E4%BB%8E%E7%9B%B8%E9%82%BB%E5%85%83%E7%B4%A0%E5%AF%B9%E8%BF%98%E5%8E%9F%E6%95%B0%E7%BB%84/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Python第二章笔记">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="从相邻元素对还原数组">
                         
-                        <span class="card-title">Python第二章笔记</span>
+                        <span class="card-title">从相邻元素对还原数组</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -628,7 +667,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-05
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-25
                         </span>
                         <span class="publish-author">
                             
@@ -645,7 +684,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/hello-world/">
@@ -675,7 +714,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>

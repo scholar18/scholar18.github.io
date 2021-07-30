@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, Scholar&#39;s Blog">
+    <meta name="keywords" content="二叉树寻路, Scholar&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | Scholar&#39;s Blog</title>
+    <title>二叉树寻路 | Scholar&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">二叉树寻路</h1>
                 </div>
             </div>
         </div>
@@ -443,21 +443,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-05-29
+                    2021-07-29
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-05-29
+                    2021-07-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3
+                    448
                 </div>
                 
 
@@ -487,7 +487,50 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>My new Post.</p>
+                <h1 id="二叉树寻路"><a href="#二叉树寻路" class="headerlink" title="二叉树寻路"></a>二叉树寻路</h1><p>在一棵无限的二叉树上，每个节点都有两个子节点，树中的节点 逐行 依次按 “之” 字形进行标记。</p>
+<p>如下图所示，在奇数行（即，第一行、第三行、第五行……）中，按从左到右的顺序进行标记；</p>
+<p>而偶数行（即，第二行、第四行、第六行……）中，按从右到左的顺序进行标记。<br><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/06/28/tree.png" alt="这是图片" title="Magic Gardens"><br>给你树上某一个节点的标号 label，请你返回从根节点到该标号为 label 节点的路径，该路径是由途经的节点标号所组成的。</p>
+<ul>
+<li>来源：力扣（LeetCode）</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-in-zigzag-labelled-binary-tree">https://leetcode-cn.com/problems/path-in-zigzag-labelled-binary-tree</a><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2></li>
+<li>输入：label = 14</li>
+<li>输出：[1,3,4,14]</li>
+</ul>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>由于这题是寻找路径，所有我的想法是，先找到目标label结点，根据完全二叉树的特点，逐步找到有关的路径。</p>
+<p>1.此题奇数行是正序，偶数行是逆序。<br>2.且目标结点的一半一定在上一行的结点中。<br>3.其中目标结点的上一个结点数字label，与上一层结点的中间结点mid有一定关系</p>
+<ul>
+<li>若mid &gt;= label,路径为：mid + (mid - label) + 1;</li>
+<li>若 mid &lt; label,路径为：mid - (label - mid) + 1;</li>
+</ul>
+<p>4.先前存储路径是由大到小，目标输出是由小到大，最后倒置一下就ok了</p>
+<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
+public:
+    vector&lt;int&gt; pathInZigZagTree(int label) &#123;
+        stack&lt;int&gt;s;
+        vector&lt;int&gt;ret;
+        while (label&gt;1) &#123;
+            s.push(label);
+            label &#x2F;&#x3D; 2;        
+            if (label &#x3D;&#x3D; 1) &#123;
+                break;
+            &#125;
+            int h &#x3D; log2(label) + 1; 
+            int mid &#x3D; (pow(2, h - 1) + pow(2, h) - 1) &#x2F; 2;  
+            if (label &lt;&#x3D; mid) &#123;             
+                label &#x3D; mid + (mid - label) + 1;
+            &#125;
+            else &#123;
+                label &#x3D; mid - (label - mid) + 1;
+            &#125;
+        &#125;
+        s.push(1);
+        while (!s.empty()) &#123;
+            ret.push_back(s.top());
+            s.pop();
+        &#125;
+        return ret;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -504,7 +547,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">scholar</a>
+                    <a href="/about" rel="external nofollow noreferrer">曹毅</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -514,7 +557,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://scholar18.github.io/myNewPost/">https://scholar18.github.io/myNewPost/</a>
+                    <a href="https://scholar18.github.io/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%AF%BB%E8%B7%AF/">https://scholar18.github.io/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%AF%BB%E8%B7%AF/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -527,7 +570,7 @@
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="/about" target="_blank">scholar</a>
+                    <a href="/about" target="_blank">曹毅</a>
                     !
                 </span>
             </div>
@@ -595,18 +638,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/myNewPost/">
+                <a href="/Excel%E8%A1%A8%E5%88%97%E5%BA%8F%E5%8F%B7/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Excel表列序号">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">Excel表列序号</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -616,18 +658,17 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-29
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-29
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            scholar
+                            曹毅
                             
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -638,13 +679,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/hello-world/">
+                <a href="/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%AC%AC%E4%BA%8C%E5%B0%8F%E7%9A%84%E7%BB%93%E7%82%B9/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="二叉树中第二小的结点">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">二叉树中第二小的结点</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -655,12 +696,12 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-27
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            scholar
+                            曹毅
                             
                         </span>
                     </div>
@@ -866,7 +907,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">76</span>
+                        class="white-color">6.2k</span>
             
             
             

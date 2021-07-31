@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="二叉树寻路, Scholar&#39;s Blog">
+    <meta name="keywords" content="二叉树的垂序遍历, Scholar&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>二叉树寻路 | Scholar&#39;s Blog</title>
+    <title>二叉树的垂序遍历 | Scholar&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">二叉树寻路</h1>
+                    <h1 class="description center-align post-title">二叉树的垂序遍历</h1>
                 </div>
             </div>
         </div>
@@ -443,28 +443,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-07-29
+                    2021-07-31
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-30
+                    2021-07-31
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    448
+                    605
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -487,50 +487,59 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="二叉树寻路"><a href="#二叉树寻路" class="headerlink" title="二叉树寻路"></a>二叉树寻路</h1><p>在一棵无限的二叉树上，每个节点都有两个子节点，树中的节点 逐行 依次按 “之” 字形进行标记。</p>
-<p>如下图所示，在奇数行（即，第一行、第三行、第五行……）中，按从左到右的顺序进行标记；</p>
-<p>而偶数行（即，第二行、第四行、第六行……）中，按从右到左的顺序进行标记。<br><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/06/28/tree.png" alt="这是图片" title="Magic Gardens"><br>给你树上某一个节点的标号 label，请你返回从根节点到该标号为 label 节点的路径，该路径是由途经的节点标号所组成的。</p>
+                <h1 id="二叉树的垂序遍历"><a href="#二叉树的垂序遍历" class="headerlink" title="二叉树的垂序遍历"></a>二叉树的垂序遍历</h1><p>给你二叉树的根结点 root ，请你设计算法计算二叉树的 垂序遍历 序列。</p>
+<p>对位于 (row, col) 的每个结点而言，其左右子结点分别位于 (row + 1, col - 1) 和 (row + 1, col + 1) 。树的根结点位于 (0, 0) 。</p>
+<p>二叉树的 垂序遍历 从最左边的列开始直到最右边的列结束，按列索引每一列上的所有结点，形成一个按出现位置从上到下排序的有序列表。如果同行同列上有多个结点，则按结点的值从小到大进行排序。</p>
+<p>返回二叉树的 垂序遍历 序列。</p>
 <ul>
 <li>来源：力扣（LeetCode）</li>
-<li>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-in-zigzag-labelled-binary-tree">https://leetcode-cn.com/problems/path-in-zigzag-labelled-binary-tree</a><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2></li>
-<li>输入：label = 14</li>
-<li>输出：[1,3,4,14]</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/vertical-order-traversal-of-a-binary-tree">https://leetcode-cn.com/problems/vertical-order-traversal-of-a-binary-tree</a></li>
 </ul>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>由于这题是寻找路径，所有我的想法是，先找到目标label结点，根据完全二叉树的特点，逐步找到有关的路径。</p>
-<p>1.此题奇数行是正序，偶数行是逆序。<br>2.且目标结点的一半一定在上一行的结点中。<br>3.其中目标结点的上一个结点数字label，与上一层结点的中间结点mid有一定关系</p>
+<h2 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h2><p>树中结点数目总数在范围 [1, 1000] 内</p>
+<p>0 &lt;= Node.val &lt;= 1000</p>
+<h2 id="示例一"><a href="#示例一" class="headerlink" title="示例一"></a>示例一</h2><p><img src="https://assets.leetcode.com/uploads/2021/01/29/vtree1.jpg" alt="photo"><br>输入：root = [3,9,20,null,null,15,7]<br>输出：[[9],[3,15],[20],[7]]<br>解释：</p>
 <ul>
-<li>若mid &gt;= label,路径为：mid + (mid - label) + 1;</li>
-<li>若 mid &lt; label,路径为：mid - (label - mid) + 1;</li>
+<li>列 -1 ：只有结点 9 在此列中。</li>
+<li>列  0 ：只有结点 3 和 15 在此列中，按从上到下顺序。</li>
+<li>列  1 ：只有结点 20 在此列中。</li>
+<li>列  2 ：只有结点 7 在此列中。</li>
 </ul>
-<p>4.先前存储路径是由大到小，目标输出是由小到大，最后倒置一下就ok了</p>
+<h2 id="示例二"><a href="#示例二" class="headerlink" title="示例二"></a>示例二</h2><p><img src="https://assets.leetcode.com/uploads/2021/01/29/vtree2.jpg" alt="photo"><br>输入：root = [1,2,3,4,5,6,7]<br>输出：[[4],[2],[1,5,6],[3],[7]]<br>解释：</p>
+<ul>
+<li>列 -2 ：只有结点 4 在此列中。</li>
+<li>列 -1 ：只有结点 2 在此列中。</li>
+<li>列  0 ：结点 1 、5 和 6 都在此列中。<pre><code>    1 在上面，所以它出现在前面。
+    5 和 6 位置都是 (2, 0) ，所以按值从小到大排序，5 在 6 的前面。
+</code></pre>
+</li>
+<li>列  1 ：只有结点 3 在此列中。</li>
+<li>列  2 ：只有结点 7 在此列中。</li>
+</ul>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>题意大概是将二叉树上的value以一定顺序排列<br>每一列排列在一起，<em><strong>考虑层序层序相同的再考虑值序</strong></em> ！</p>
+<p>所以这题本质上就是遍历二叉树，让符合条件的value排入到数组中</p>
 <h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
 public:
-    vector&lt;int&gt; pathInZigZagTree(int label) &#123;
-        stack&lt;int&gt;s;
-        vector&lt;int&gt;ret;
-        while (label&gt;1) &#123;
-            s.push(label);
-            label &#x2F;&#x3D; 2;        
-            if (label &#x3D;&#x3D; 1) &#123;
-                break;
-            &#125;
-            int h &#x3D; log2(label) + 1; 
-            int mid &#x3D; (pow(2, h - 1) + pow(2, h) - 1) &#x2F; 2;  
-            if (label &lt;&#x3D; mid) &#123;             
-                label &#x3D; mid + (mid - label) + 1;
-            &#125;
-            else &#123;
-                label &#x3D; mid - (label - mid) + 1;
-            &#125;
-        &#125;
-        s.push(1);
-        while (!s.empty()) &#123;
-            ret.push_back(s.top());
-            s.pop();
-        &#125;
-        return ret;
+    map&lt;int,multiset&lt;int&gt;&gt; mp;
+    void xswl(TreeNode* p,int x,int y)
+    &#123;
+        if(p &#x3D;&#x3D; nullptr) return ;
+        mp[x].insert(y * 100000 + p-&gt;val); &#x2F;&#x2F; 确保每一层的value在同一层的是按大小排列的
+        xswl(p-&gt;left,x-1,y+1);
+        xswl(p-&gt;right,x+1,y+1);
+        return ;
     &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    vector&lt;vector&lt;int&gt;&gt; verticalTraversal(TreeNode* root) &#123;
+        vector&lt;vector&lt;int&gt;&gt; ans;
+        xswl(root,0,0);
+        for(auto i: mp)&#123;
+            vector&lt;int&gt; temp;
+            for(auto j:i.second) temp.push_back(j % 100000);
+            ans.push_back(temp);
+        &#125;
+        return ans;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -557,7 +566,7 @@ public:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://scholar18.github.io/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%AF%BB%E8%B7%AF/">https://scholar18.github.io/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%AF%BB%E8%B7%AF/</a>
+                    <a href="https://scholar18.github.io/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9E%82%E5%BA%8F%E9%81%8D%E5%8E%86/">https://scholar18.github.io/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9E%82%E5%BA%8F%E9%81%8D%E5%8E%86/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -638,9 +647,48 @@ public:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9E%82%E5%BA%8F%E9%81%8D%E5%8E%86/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="二叉树的垂序遍历">
+                        
+                        <span class="card-title">二叉树的垂序遍历</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-31
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            曹毅
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/Excel%E8%A1%A8%E5%88%97%E5%BA%8F%E5%8F%B7/">
                     <div class="card-image">
@@ -658,45 +706,8 @@ public:
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-29
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            曹毅
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%AC%AC%E4%BA%8C%E5%B0%8F%E7%9A%84%E7%BB%93%E7%82%B9/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="二叉树中第二小的结点">
-                        
-                        <span class="card-title">二叉树中第二小的结点</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-29
                             </span>
                         <span class="publish-author">
                             

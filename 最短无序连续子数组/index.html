@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Python第二章笔记, Scholar&#39;s Blog">
+    <meta name="keywords" content="最短无序连续子数组, Scholar&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Python第二章笔记 | Scholar&#39;s Blog</title>
+    <title>最短无序连续子数组 | Scholar&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Python第二章笔记</h1>
+                    <h1 class="description center-align post-title">最短无序连续子数组</h1>
                 </div>
             </div>
         </div>
@@ -443,28 +443,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-07-05
+                    2021-08-03
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-30
+                    2021-08-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    678
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    3 分
                 </div>
                 
 
@@ -487,59 +487,64 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="变量和简单数据类型"><a href="#变量和简单数据类型" class="headerlink" title="变量和简单数据类型"></a>变量和简单数据类型</h1><h2 id="变量的命名"><a href="#变量的命名" class="headerlink" title="变量的命名"></a>变量的命名</h2><p>变量名只能包含数字、字母、下划线，且不能以<strong>数字做开头</strong>.</p>
-<p>变量名不能包含<strong>空格</strong>，且不能使用Python关键字</p>
-<p>变量名应具体，使人一眼就明白该变量的含义</p>
-<p>变量名不应使用<strong>0，1</strong> .易与<strong>o，l</strong>搞混</p>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>字符串即一系列字符，在Python中用<strong>双撇号””或单撇号’ ‘括</strong>起来的都是字符串</p>
+                <h1 id="最短无序连续子数组"><a href="#最短无序连续子数组" class="headerlink" title="最短无序连续子数组"></a>最短无序连续子数组</h1><p>给你一个整数数组 nums ，你需要找出一个 连续子数组 ，如果对这个子数组进行升序排序，那么整个数组都会变为升序排序。</p>
+<p>请你找出符合题意的 最短 子数组，并输出它的长度。</p>
 <ul>
-<li>在使用字符串是应注意</li>
-<li>外围使用””时，内部不应再次使用””,易发生混乱。</li>
-<li>外围使用’’时，内部也不应使用’’.</li>
+<li>来源：力扣（LeetCode）</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shortest-unsorted-continuous-subarray">https://leetcode-cn.com/problems/shortest-unsorted-continuous-subarray</a></li>
 </ul>
-<p>下面是一些有关字符串的函数</p>
-<p>以下字符串同一用 name 表示</p>
+<h2 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h2><p>1 &lt;= nums.length &lt;= 104<br>-105 &lt;= nums[i] &lt;= 105</p>
+<h2 id="示例一"><a href="#示例一" class="headerlink" title="示例一"></a>示例一</h2><p>输入：nums = [2,6,4,8,10,9,15]<br>输出：5<br>解释：你只需要对 [6, 4, 8, 10, 9] 进行升序排序，那么整个表都会变为升序排序。</p>
+<h2 id="示例二"><a href="#示例二" class="headerlink" title="示例二"></a>示例二</h2><p>输入：nums = [1,2,3,4]<br>输出：0</p>
+<h2 id="示例三"><a href="#示例三" class="headerlink" title="示例三"></a>示例三</h2><p>输入：nums = [1]<br>输出：0</p>
+<h2 id="思路一"><a href="#思路一" class="headerlink" title="思路一"></a>思路一</h2><p>新建一个数组，并排序，使用双指针，分别由前往后，有后往前，找到与愿数组第一个不同的下表记录，即找到需要排序的范围</p>
+<h2 id="AC代码一"><a href="#AC代码一" class="headerlink" title="AC代码一"></a>AC代码一</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
+public:
+    int findUnsortedSubarray(vector&lt;int&gt;&amp; nums) &#123;
+        int n &#x3D; nums.size();    
+        vector&lt;int&gt; arr &#x3D; nums;
+        sort(arr.begin(),arr.end());
+        int i &#x3D; 0, j &#x3D; n - 1;
+        while (i &lt;&#x3D; j &amp;&amp; nums[i] &#x3D;&#x3D; arr[i]) i++;
+        while (i &lt;&#x3D; j &amp;&amp; nums[j] &#x3D;&#x3D; arr[j]) j--;
+        return j - i + 1;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="思路二"><a href="#思路二" class="headerlink" title="思路二"></a>思路二</h2><p>三段处理，一三两端是不用排序的，中间一段是<strong>需要排序</strong>的。</p>
+<p>我们先找到第一个<strong>不符合升序</strong>的下标i，在找到最后一个<strong>不符合升序</strong>的下标j，这就简单分成了三段</p>
+<p>第一段 [0,i), <strong>第二段[i,j]</strong>, 第三段(j,n].<br>之后我们遍历第二段，遍历下标先用x代替</p>
 <ul>
-<li><p>name.title() #使每个单词的首字母大写</p>
-</li>
-<li><p>name.upper() #将所有字母改为大写字母</p>
-</li>
-<li><p>name.lower() #将所有字母改为小写字母</p>
-</li>
-<li><p>name = f”{name1} {name}”<br>将class1与class2连接起来，每个字符串用{}括起来，在每个{}之间或者说在””内的个个地方都可以插入一些字符串。<br>(f字符串是在Python3.6版本引入，在3.5及更早版本无法使用，可以</p>
-</li>
-<li><p>使用format())<br>例：full_name = “{} {}”.format(first_name,last_name)<br>  用法与f字符串类似，这里不做过多解释</p>
-</li>
-<li><p>name.rstrip() #可暂时删除字符串末尾的空白若要永久删除，应将删除操作的结果关联到变量：</p>
-</li>
-<li><p>name = name.rstrip() #就可以永久删除空白</p>
-</li>
-<li><p>name.lstrip() #可暂时删除字符串开头的空白</p>
-</li>
-<li><p>name.strip()  #可暂时删除字符串两侧的空白</p>
-</li>
+<li>若nums[x] &lt; nums[i],在整体排序中，nums[x]应出现在nums[i] 前面，所以 <strong>i</strong> 应 <strong>-1</strong></li>
+<li>若nums[x] &gt; nums[j],在整体排序中，nums[x]应出现在nums[j] 后面，所以 <strong>j</strong> 应 <strong>+1</strong></li>
 </ul>
-<h2 id="整数与浮点数"><a href="#整数与浮点数" class="headerlink" title="整数与浮点数"></a>整数与浮点数</h2><p>Python中的整数包括正整数，0，负整数。<br>奇妙的是，Python中整数的值是可以无限大的，当取值超过计算机自身的计算能力时，Python 会自动转用高精度计算（大数计算）。这使得在计算高精度时，Python有着天然的优势。</p>
-<p>当数值过大时，我们可以在其中添加<strong>下划线</strong>来使数更加易读，例：14_000_000_000与14000000000没有任何区别。</p>
-<p>关于运算</p>
+<p>最后我们得到i,j。其中需要排序的片段是(i,j)，</p>
 <ul>
-<li>+，-，*与其他语言类似，不做阐述</li>
-<li>**代表乘方运算</li>
-<li>/代表除法，任意两个数相除，结果一定是浮点数.</li>
-<li>//也是除法，但结果是整数，且为向下取整。</li>
-<li>% 为取余运算</li>
+<li>若i <strong>!=</strong> j,所以结果应为 <strong>(j-1)-(i+1)+1</strong>;</li>
+<li>若<strong>i = j</strong>，结果为 <strong>0</strong>.</li>
 </ul>
-<p>记：python支持同时给多个变量同时赋值,但要保证前后个数相等</p>
-<h3 id="x-y-z-1-2-3"><a href="#x-y-z-1-2-3" class="headerlink" title="x,y,z = 1,2,3"></a>x,y,z = 1,2,3</h3><h2 id="Python之禅"><a href="#Python之禅" class="headerlink" title="Python之禅"></a>Python之禅</h2><p>The Zen of Python, by Tim Peters</p>
-<p>Beautiful is better than ugly.<br>Explicit is better than implicit.<br>Simple is better than complex.<br>Complex is better than complicated.<br>Flat is better than nested.<br>Sparse is better than dense.<br>Readability counts.<br>Special cases aren’t special enough to break the rules.<br>Although practicality beats purity.<br>Errors should never pass silently.<br>Unless explicitly silenced.<br>In the face of ambiguity, refuse the temptation to guess.<br>There should be one– and preferably only one –obvious way to do it.<br>Although that way may not be obvious at first unless you’re Dutch.<br>Now is better than never.<br>Although never is often better than <em>right</em> now.<br>If the implementation is hard to explain, it’s a bad idea.<br>If the implementation is easy to explain, it may be a good idea.<br>Namespaces are one honking great idea – let’s do more of those!</p>
-<p>下面为中文翻译：<br>Python之禅 by Tim Peters</p>
-<p>优美胜于丑陋（Python 以编写优美的代码为目标）<br>    明了胜于晦涩（优美的代码应当是明了的，命名规范，风格相似）<br>    简洁胜于复杂（优美的代码应当是简洁的，不要有复杂的内部实现）<br>    复杂胜于凌乱（如果复杂不可避免，那代码间也不能有难懂的关系，要保持接口简洁）<br>    扁平胜于嵌套（优美的代码应当是扁平的，不能有太多的嵌套）<br>    间隔胜于紧凑（优美的代码有适当的间隔，不要奢望一行代码解决问题）<br>    可读性很重要（优美的代码是可读的）<br>    即便假借特例的实用性之名，也不可违背这些规则（这些规则至高无上）</p>
-<p>不要包容所有错误，除非你确定需要这样做（精准地捕获异常，不写 except:pass 风格的代码）</p>
-<p>当存在多种可能，不要尝试去猜测<br>而是尽量找一种，最好是唯一一种明显的解决方案（如果不确定，就用穷举法）<br>虽然这并不容易，因为你不是 Python 之父（这里的 Dutch 是指 Guido ）</p>
-<p>做也许好过不做，但不假思索就动手还不如不做（动手之前要细思量）</p>
-<p>如果你无法向人描述你的方案，那肯定不是一个好方案；反之亦然（方案测评标准）</p>
-<p>命名空间是一种绝妙的理念，我们应当多加利用（倡导与号召）</p>
-
+<p>另，借助哨兵，进行一些细微调整。</p>
+<h2 id="AC代码二"><a href="#AC代码二" class="headerlink" title="AC代码二"></a>AC代码二</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
+public:
+    int findUnsortedSubarray(vector&lt;int&gt;&amp; nums) &#123;
+        int MAX &#x3D; 100005,MIN &#x3D; -100005;
+        int i &#x3D; 0,j &#x3D; nums.size() - 1;
+        while(i &lt; j &amp;&amp; nums[i] &lt;&#x3D; nums[i+1]) i++;
+        while(i &lt; j &amp;&amp; nums[j] &gt;&#x3D; nums[j-1]) j--;
+        int l &#x3D; i,r &#x3D; j;
+        int min &#x3D; nums[i],max &#x3D; nums[j];
+        for(int x &#x3D; l;x &lt;&#x3D; r;x++)&#123;
+            if(nums[x] &lt; min)&#123;
+                while(i &gt;&#x3D; 0 &amp;&amp; nums[x] &lt; nums[i])i--;
+                min &#x3D; i &gt;&#x3D; 0 ?nums[i]:MIN;
+            &#125;
+            if(nums[x] &gt; max)&#123;
+                while(j &lt; nums.size() &amp;&amp; nums[x] &gt; nums[j])j++;
+                max &#x3D; j &lt; nums.size()?nums[j]:MAX;
+            &#125;
+        &#125;
+        return i &#x3D;&#x3D; j ? 0 : (j - 1) - (i + 1) + 1;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -565,7 +570,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://scholar18.github.io/Python%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://scholar18.github.io/Python%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
+                    <a href="https://scholar18.github.io/%E6%9C%80%E7%9F%AD%E6%97%A0%E5%BA%8F%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84/">https://scholar18.github.io/%E6%9C%80%E7%9F%AD%E6%97%A0%E5%BA%8F%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -650,13 +655,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/%E4%BB%8E%E7%9B%B8%E9%82%BB%E5%85%83%E7%B4%A0%E5%AF%B9%E8%BF%98%E5%8E%9F%E6%95%B0%E7%BB%84/">
+                <a href="/%E6%9C%89%E6%95%88%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E4%B8%AA%E6%95%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="从相邻元素对还原数组">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="有效三角形的个数">
                         
-                        <span class="card-title">从相邻元素对还原数组</span>
+                        <span class="card-title">有效三角形的个数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -667,7 +672,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-25
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-04
                         </span>
                         <span class="publish-author">
                             
@@ -687,13 +692,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/hello-world/">
+                <a href="/%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%88%98%E6%96%97%E5%8A%9B%E6%9C%80%E5%BC%B1%E7%9A%84k%E8%A1%8C/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="矩阵中战斗力最弱的k行">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">矩阵中战斗力最弱的k行</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -704,12 +709,12 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            scholar
+                            曹毅
                             
                         </span>
                     </div>

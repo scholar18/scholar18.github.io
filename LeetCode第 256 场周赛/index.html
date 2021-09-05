@@ -450,7 +450,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-29
+                    2021-09-05
                 </div>
                 
 
@@ -551,7 +551,7 @@ public:
 <li>来源：力扣（LeetCode）</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks">https://leetcode-cn.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks</a></li>
 </ul>
-<h2 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2><p>题解的状态压缩没看懂，里面用到了位运算，按位‘与’运算符，我搞不明白，有点晕。<br>但我看到了另一个题解，随机暴力解法，利用概率随机排序一个很大的数，在我基数很大的情况下，必然会出现一个正确结果。<br>也就是，随机进行一万，十万，甚至一百万次随机排序，之后按部就班计算每次排序结果所用的工作时间段，取最小值。</p>
+<h2 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2><p>题解的状态压缩没看懂，里面用到了位运算，按位‘与’运算符，我搞不明白，有点晕。<br>但我看到了另一个题解，随机暴力解法，利用概率随机排序一个很大的数，在我基数很大的情况下，必然会出现一个正确结果。<br><strong>这种方法很无耻，所以我就拿来用了</strong><br>也就是，随机进行一万，十万，甚至一百万次随机排序，之后按部就班计算每次排序结果所用的工作时间段，取最小值。</p>
 <h2 id="c-2"><a href="#c-2" class="headerlink" title="c++"></a>c++</h2><p>随机化算法</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
 public:
@@ -746,29 +746,28 @@ public:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/LeetCode%E7%AC%AC%20256%20%E5%9C%BA%E5%91%A8%E8%B5%9B/">
+                <a href="/%E7%94%A8%20Rand7()%20%E5%AE%9E%E7%8E%B0%20Rand10()/">
                     <div class="card-image">
                         
-                        <img src="/../images/%E5%93%88%E5%B8%8C.jpg" class="responsive-img" alt="LC第256场周赛题解">
+                        <img src="/../images/%E5%93%88%E5%B8%8C.jpg" class="responsive-img" alt="LC日常rand()">
                         
-                        <span class="card-title">LC第256场周赛题解</span>
+                        <span class="card-title">LC日常rand()</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            AC两道，排名1925
+                            第一次见，不吐不快
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-05
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -777,7 +776,6 @@ public:
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>

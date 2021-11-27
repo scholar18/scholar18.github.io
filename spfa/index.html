@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="有效三角形的个数, Scholar&#39;s Blog">
+    <meta name="keywords" content="Spfa, Scholar&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>有效三角形的个数 | Scholar&#39;s Blog</title>
+    <title>Spfa | Scholar&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -315,7 +315,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">有效三角形的个数</h1>
+                    <h1 class="description center-align post-title">Spfa</h1>
                 </div>
             </div>
         </div>
@@ -443,28 +443,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-08-04
+                    2021-11-25
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-04
+                    2021-11-25
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    607
+                    774
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 
@@ -487,96 +487,154 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="有效三角形的个数"><a href="#有效三角形的个数" class="headerlink" title="有效三角形的个数"></a>有效三角形的个数</h1><p>给定一个包含非负整数的数组，你的任务是统计其中可以组成三角形三条边的三元组个数。</p>
-<h2 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h2><p>数组长度不超过1000。<br>数组里整数的范围为 [0, 1000]。</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>输入: [2,2,3,4]<br>输出: 3<br>解释:<br>有效的组合是: </p>
-<ul>
-<li>2,3,4 (使用第一个 2)</li>
-<li>2,3,4 (使用第二个 2)</li>
-<li>2,2,3</li>
+                <h1 id="Spfa算法"><a href="#Spfa算法" class="headerlink" title="Spfa算法"></a>Spfa算法</h1><h2 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h2><ul>
+<li>最短路-&gt;单源最短路-&gt;存在负权边</li>
+<li>不存在负权边也可用</li>
+<li>判断是否有负权回路<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2>平均$m$, 最坏是$nm$<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2></li>
+<li>与bellman-ford类似，但在第二层循环进行了优化</li>
+<li>我们只将确认变短的点放进队列内，以此用来更新其他的最短路径</li>
+<li>大概意思为，有<strong>一点</strong>的<strong>最短路径更新</strong>了，那么以此点为<strong>起点</strong>的<strong>点的最短路径</strong>都要被更新，所以我们用<strong>队列</strong>来存储</li>
+<li>我们使用<strong>邻接表</strong>来存储图<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/853/">https://www.acwing.com/problem/content/853/</a></li>
 </ul>
-<h2 id="思路一"><a href="#思路一" class="headerlink" title="思路一"></a>思路一</h2><p><strong>双指针加贪心</strong></p>
-<p>先排序，固定一值k，利用双指针i,j，判断是否能构成三角形</p>
-<p>判断三角形方法：</p>
-<ul>
-<li>两边之和大于第三边，即<strong>nums[i] + nums[j] &gt; nums[k]</strong></li>
-</ul>
-<p>同时，若有i,j 满足nums[i] + nums[j] &gt; nums[k]，则同时有</p>
-<ul>
-<li>nums[i+1] + nums[j] &gt; nums[k]</li>
-<li>nums[i+2] + nums[j] &gt; nums[k]</li>
-<li>nums[i+3] + nums[j] &gt; nums[k]</li>
-<li>…..</li>
-<li>nums[j-1] + nums[j] &gt; nums[k]</li>
-</ul>
-<p><strong>时间复杂度</strong> ：O(N^2)<br><strong>空间复杂度</strong> ：O(1)</p>
-<h2 id="AC代码一"><a href="#AC代码一" class="headerlink" title="AC代码一"></a>AC代码一</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
-public:
-    int triangleNumber(vector&lt;int&gt;&amp; nums) &#123;
-        if(nums.size() &lt; 3) return 0;
-        sort(nums.begin(),nums.end());
-        int ans &#x3D; 0;
-        for(int k &#x3D; nums.size() - 1;k &gt;&#x3D; 2;k--)&#123;
-            int i &#x3D; 0,j &#x3D; k - 1;
-            while(i &lt; j)&#123;
-                if(nums[i] + nums[j] &gt; nums[k])&#123;
-                    ans +&#x3D; j - i;
-                    j--;
-                &#125;else&#123;
-                    i++;
-                &#125;
-            &#125;
-        &#125;
-        return ans;
-    &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="ACcode"><a href="#ACcode" class="headerlink" title="ACcode"></a>ACcode</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
 
-<h2 id="思路二"><a href="#思路二" class="headerlink" title="思路二"></a>思路二</h2><p><strong>暴力美学</strong><br>直接开三个循环，赌这个数据量能过</p>
-<p><strong>时间复杂度</strong> ：O(N^3)<br><strong>空间复杂度</strong> ：O(1)</p>
-<h2 id="代码二"><a href="#代码二" class="headerlink" title="代码二"></a>代码二</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
-public:
-    int triangleNumber(vector&lt;int&gt;&amp; nums) &#123;
-        if(nums.size() &lt; 3) return 0;
-        int ans &#x3D; 0,n &#x3D; nums.size();
-        sort(nums.begin(),nums.end());
-        for(int i &#x3D; 0;i &lt; n;i++)&#123;
-            for(int j &#x3D; i+1;j &lt; n;j++)&#123;
-                for(int k &#x3D; j+1;k &lt; n;k++)&#123;
-                    if(nums[i] + nums[j] &gt; nums[k])
-                        ans++;
+using namespace std;
+
+const int N &#x3D; 100010;
+
+int h[N], e[N], ne[N], w[N], idx;
+int dist[N];
+bool st[N];
+int n, m;
+
+void add(int a, int b, int c)
+&#123;
+    e[idx] &#x3D; b, ne[idx] &#x3D; h[a], w[idx] &#x3D; c, h[a] &#x3D; idx ++;
+&#125;
+
+void spfa()
+&#123;
+    memset(dist, 0x3f, sizeof dist);
+    dist[1] &#x3D; 0;
+    queue&lt;int&gt; q;
+    q.push(1);
+    st[1] &#x3D; true;
+    while(q.size())
+    &#123;
+        int t &#x3D; q.front();
+        q.pop();
+        st[t] &#x3D; false;
+        for (int i &#x3D; h[t]; i !&#x3D; -1; i &#x3D; ne[i])
+        &#123;
+            int j &#x3D; e[i];
+            if(dist[j] &gt; dist[t] + w[i])
+            &#123;
+                dist[j] &#x3D; dist[t] + w[i];
+                if(!st[j])
+                &#123;
+                    q.push(j);
+                    st[j] &#x3D; true;
                 &#125;
             &#125;
         &#125;
-        return ans;
     &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>我试过了，超时，明明数据量也不大，真是。</p>
-<h2 id="思路三"><a href="#思路三" class="headerlink" title="思路三"></a>思路三</h2><p><strong>排序加二分查找</strong><br>先排序，在开个双重循环，充当两条较小边，使用二分查找，找到满足条件的最大的边。</p>
-<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
-public:
-    int triangleNumber(vector&lt;int&gt;&amp; nums) &#123;
-        int n &#x3D; nums.size();
-        sort(nums.begin(), nums.end());
-        int ans &#x3D; 0;
-        for (int i &#x3D; 0; i &lt; n; ++i) &#123;
-            for (int j &#x3D; i + 1; j &lt; n; ++j) &#123;
-                int left &#x3D; j + 1, right &#x3D; n - 1, k &#x3D; j;
-                while (left &lt;&#x3D; right) &#123;
-                    int mid &#x3D; (left + right) &#x2F; 2;
-                    if (nums[mid] &lt; nums[i] + nums[j]) &#123;
-                        k &#x3D; mid;
-                        left &#x3D; mid + 1;
-                    &#125;
-                    else &#123;
-                        right &#x3D; mid - 1;
-                    &#125;
+&#125;
+
+int main()
+&#123;
+    memset(h, -1, sizeof h);
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i &#x3D; 1; i &lt;&#x3D; m; i ++)
+    &#123;
+        int a, b, c;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+        add(a, b, c);
+    &#125;
+    spfa();
+    if(dist[n] &#x3D;&#x3D; 0x3f3f3f3f) cout &lt;&lt; &quot;impossible&quot; &lt;&lt; endl;
+    else cout &lt;&lt; dist[n] &lt;&lt; endl;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="判断负权回路"><a href="#判断负权回路" class="headerlink" title="判断负权回路"></a>判断负权回路</h2><ul>
+<li>首先，若有负权回路，那么<strong>一定存在一点</strong>的最短路径是<strong>一直减小</strong>的。</li>
+<li>那么这一点一定会<strong>多次更新</strong>自己的<strong>最短路径</strong></li>
+<li>我们定义一个函数<strong>cnt</strong>用来<strong>计数</strong>该点的<strong>更新次数</strong></li>
+<li>显然易得，一个点的<strong>更新次数</strong>是不会<strong>多余图的点数的</strong></li>
+<li>当他<strong>大于或等于图</strong>的<strong>总点数</strong>时，存在负权回路</li>
+</ul>
+<h2 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/854/">https://www.acwing.com/problem/content/854/</a></p>
+<h2 id="ACcode-1"><a href="#ACcode-1" class="headerlink" title="ACcode"></a>ACcode</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+const int M &#x3D; 10010, N &#x3D; 2010;
+
+int h[N], e[M], ne[M], w[M], idx;
+int dist[N], cnt[N];
+bool st[N];
+int n, m;
+
+void add(int a, int b, int c)
+&#123;
+    e[idx] &#x3D; b, ne[idx] &#x3D; h[a], w[idx] &#x3D; c, h[a] &#x3D; idx ++;
+&#125;
+
+bool spfa()
+&#123;
+    memset(dist, 0x3f, sizeof dist);
+    dist[1] &#x3D; 0;
+    queue&lt;int&gt; q;
+    for (int i &#x3D; 1; i &lt;&#x3D; n; i ++)
+    &#123;
+        st[i] &#x3D; true;
+        q.push(i);
+    &#125;
+    
+    while(q.size())
+    &#123;
+        int t &#x3D; q.front();
+        q.pop();
+        st[t] &#x3D; false;
+        for (int i &#x3D; h[t]; i !&#x3D; -1; i &#x3D; ne[i])
+        &#123;
+            int j &#x3D; e[i];
+            if(dist[j] &gt; dist[t] + w[i])
+            &#123;
+                dist[j] &#x3D; dist[t] + w[i];
+                cnt[j] &#x3D; cnt[t] + 1;
+                if(cnt[j] &gt;&#x3D; n) return true;
+                if(!st[j])
+                &#123;
+                    q.push(j);
+                    st[j] &#x3D; true;
                 &#125;
-                ans +&#x3D; k - j;
             &#125;
         &#125;
-        return ans;
     &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    return false;
+&#125;
+
+int main()
+&#123;
+    memset(h, -1, sizeof h);
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i &#x3D; 1; i &lt;&#x3D; m; i ++)
+    &#123;
+        int a, b, c;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+        add(a, b, c);
+    &#125;
+    if(spfa()) puts(&quot;Yes&quot;);
+    else puts(&quot;No&quot;);
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -592,7 +650,7 @@ public:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">曹毅</a>
+                    <a href="/about" rel="external nofollow noreferrer">scholar</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -602,7 +660,7 @@ public:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://scholar18.github.io/%E6%9C%89%E6%95%88%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E4%B8%AA%E6%95%B0/">https://scholar18.github.io/%E6%9C%89%E6%95%88%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E4%B8%AA%E6%95%B0/</a>
+                    <a href="https://scholar18.github.io/spfa/">https://scholar18.github.io/spfa/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -615,7 +673,7 @@ public:
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="/about" target="_blank">曹毅</a>
+                    <a href="/about" target="_blank">scholar</a>
                     !
                 </span>
             </div>
@@ -687,29 +745,29 @@ public:
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/LeetCode%E7%AC%AC253%E5%9C%BA%E5%8D%95%E5%91%A8%E8%B5%9B/">
+                <a href="/floyd/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="LeetCode第253场单周赛">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Floyd">
                         
-                        <span class="card-title">LeetCode第253场单周赛</span>
+                        <span class="card-title">Floyd</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            图论
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-08
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-25
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            曹毅
+                            scholar
                             
                         </span>
                     </div>
@@ -724,29 +782,29 @@ public:
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/%E6%9C%80%E7%9F%AD%E6%97%A0%E5%BA%8F%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84/">
+                <a href="/%E5%A0%86%E4%BC%98%E5%8C%96Dijkstra/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="最短无序连续子数组">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="堆优化Dijkstra">
                         
-                        <span class="card-title">最短无序连续子数组</span>
+                        <span class="card-title">堆优化Dijkstra</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            图论
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            曹毅
+                            scholar
                             
                         </span>
                     </div>

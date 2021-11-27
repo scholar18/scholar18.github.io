@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="LC日常rand(), Scholar&#39;s Blog">
+    <meta name="keywords" content="堆优化Dijkstra, Scholar&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>LC日常rand() | Scholar&#39;s Blog</title>
+    <title>堆优化Dijkstra | Scholar&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/../images/%E5%93%88%E5%B8%8C.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LC日常rand()</h1>
+                    <h1 class="description center-align post-title">堆优化Dijkstra</h1>
                 </div>
             </div>
         </div>
@@ -443,28 +443,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-05
+                    2021-11-25
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-05
+                    2021-11-25
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4
+                    748
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -487,7 +487,99 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="日常一图"><a href="#日常一图" class="headerlink" title="日常一图"></a>日常一图</h1>
+                <h1 id="堆优化Dijkstra"><a href="#堆优化Dijkstra" class="headerlink" title="堆优化Dijkstra"></a>堆优化Dijkstra</h1><h2 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h2><ul>
+<li>最短路径问题-&gt;单源最短路-&gt;所有边权都是正数</li>
+<li><strong>稀疏图</strong>，即边数$m \le 点数n$</li>
+<li>用<strong>邻接表</strong>储存<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2>$mlogn$<h2 id="原理解释"><a href="#原理解释" class="headerlink" title="原理解释"></a>原理解释</h2></li>
+<li><strong>dist</strong>表示点离起点的距离，st存储每个点离起点的<strong>最短值</strong></li>
+<li>1.dist[1] = 0; // 表示1到起点距离为0</li>
+<li>2.遍历所有点，找到<strong>不属于st的点</strong>中离起点最近的点，记录为<strong>t</strong></li>
+<li>将其存入<strong>st</strong>中</li>
+<li>用<strong>t</strong>这一点更新<strong>其他点</strong>离起点的距离</li>
+<li>上述与朴素Dijkstra相同，但进行<strong>2</strong>时，我们使用<strong>优先队列</strong>处理,同时存储<strong>图</strong> 我们使用<strong>邻接表</strong>处理</li>
+</ul>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/852/">https://www.acwing.com/problem/content/852/</a></p>
+<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+const int N &#x3D; 1000010;
+typedef pair&lt;int, int&gt; PII;
+
+int n, m;
+int h[N], w[N], e[N], ne[N], idx;
+int dist[N];
+bool st[N];
+
+void add(int a, int b, int c)
+&#123;
+    e[idx] &#x3D; b, w[idx] &#x3D; c,ne[idx] &#x3D; h[a], h[a] &#x3D; idx ++; 
+&#125;
+
+int dijkstra()
+&#123;
+    memset(dist, 0x3f, sizeof dist);
+    dist[1] &#x3D; 0;
+    priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt;&gt; heap;
+    heap.push(&#123;0,1&#125;);
+    while(heap.size())
+    &#123;
+        auto t &#x3D; heap.top();
+        heap.pop();
+        int distance &#x3D; t.first, ver &#x3D; t.second;
+        
+        if(st[ver]) continue;
+        st[ver] &#x3D; true;
+        
+        for (int i &#x3D; h[ver]; i !&#x3D; -1; i &#x3D; ne[i])
+        &#123;
+            int j &#x3D; e[i];
+            if(dist[j] &gt; dist[ver] + w[i])
+            &#123;
+                dist[j] &#x3D; dist[ver] + w[i];
+                heap.push(&#123;dist[j], j&#125;);
+            &#125;
+        &#125;
+    &#125;
+    if(dist[n] &#x3D;&#x3D; 0x3f3f3f3f) return -1;
+    return dist[n];
+&#125;
+int main()
+&#123;
+    memset(h, -1, sizeof h);
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+    for (int i &#x3D; 1; i &lt;&#x3D; m; i ++)
+    &#123;
+        int a, b, c;
+        scanf(&quot;%d%d%d&quot;, &amp;a, &amp;b, &amp;c);
+        add(a, b, c);
+    &#125;
+    printf(&quot;%d\n&quot;, dijkstra());
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="add-解释"><a href="#add-解释" class="headerlink" title="add()解释"></a>add()解释</h3><pre><code>e[idx]表示的是a有一条连向b的边，所以e[idx]存的是b.
+ne[idx]和h[a]其实是这样的：将a能到的所有点存在
+一个连表里，表头就是h[a]，h[a]=idx++就是让从a
+的表头指向第idx条边，这样就实现从a这个节点能遍
+历到第idx条边.
+ne[idx]=h[a]事实上也就是对应链表里的插入操作中
+把next指针指向表头所指向的点，让第idx条边能够
+遍历到h[a]原来指向的这个点，和h[a]=idx++搭配
+后实现遍历a的邻点。
+</code></pre>
+<h2 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h2><p>我们使用数组模拟链表来储存图</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">e[idx] &#x3D; b, w[idx] &#x3D; c,ne[idx] &#x3D; h[a], h[a] &#x3D; idx ++; <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>e[idx] = b,这里用来表示第idx条边指向b</li>
+<li>w[idx] = c,用来存储边权值</li>
+<li>ne[idx] = h[a], 表示第idx条边的是由a为起点的</li>
+<li>h[a] = idx ++,一方面让idx + 1，另一方面使h[a]一直记录为a的最后一条边，以此通过ne[idx] 找到上一个边，直至找完所有与a有关的边，从而实现遍历所有与a有关的边。</li>
+</ul>
+
                 
             </div>
             <hr/>
@@ -513,7 +605,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://scholar18.github.io/%E7%94%A8%20Rand7()%20%E5%AE%9E%E7%8E%B0%20Rand10()/">https://scholar18.github.io/%E7%94%A8%20Rand7()%20%E5%AE%9E%E7%8E%B0%20Rand10()/</a>
+                    <a href="https://scholar18.github.io/%E5%A0%86%E4%BC%98%E5%8C%96Dijkstra/">https://scholar18.github.io/%E5%A0%86%E4%BC%98%E5%8C%96Dijkstra/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -594,29 +686,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/%E7%94%A8%20Rand7()%20%E5%AE%9E%E7%8E%B0%20Rand10()/">
+                <a href="/spfa/">
                     <div class="card-image">
                         
-                        <img src="/../images/%E5%93%88%E5%B8%8C.jpg" class="responsive-img" alt="LC日常rand()">
                         
-                        <span class="card-title">LC日常rand()</span>
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Spfa">
+                        
+                        <span class="card-title">Spfa</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            第一次见，不吐不快
+                            图论
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-05
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-25
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -625,7 +717,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -636,23 +727,23 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/LeetCode%E7%AC%AC%20256%20%E5%9C%BA%E5%91%A8%E8%B5%9B/">
+                <a href="/a%E7%9A%84b%E6%AC%A1%E6%96%B9/">
                     <div class="card-image">
                         
-                        <img src="/../images/%E5%93%88%E5%B8%8C.jpg" class="responsive-img" alt="LC第256场周赛题解">
+                        <img src="/../images/%E5%93%88%E5%B8%8C.jpg" class="responsive-img" alt="a^b位运算">
                         
-                        <span class="card-title">LC第256场周赛题解</span>
+                        <span class="card-title">a^b位运算</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            AC两道，排名1925
+                            利用二进制进行快速幂
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-17
                             </span>
                         <span class="publish-author">
                             
@@ -863,7 +954,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">11.6k</span>
+                        class="white-color">14.8k</span>
             
             
             

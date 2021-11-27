@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="有效三角形的个数, Scholar&#39;s Blog">
+    <meta name="keywords" content="a^b位运算, Scholar&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>有效三角形的个数 | Scholar&#39;s Blog</title>
+    <title>a^b位运算 | Scholar&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/../images/%E5%93%88%E5%B8%8C.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">有效三角形的个数</h1>
+                    <h1 class="description center-align post-title">a^b位运算</h1>
                 </div>
             </div>
         </div>
@@ -443,28 +443,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-08-04
+                    2021-10-17
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-04
+                    2021-10-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    607
+                    194
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 
@@ -487,96 +487,28 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="有效三角形的个数"><a href="#有效三角形的个数" class="headerlink" title="有效三角形的个数"></a>有效三角形的个数</h1><p>给定一个包含非负整数的数组，你的任务是统计其中可以组成三角形三条边的三元组个数。</p>
-<h2 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h2><p>数组长度不超过1000。<br>数组里整数的范围为 [0, 1000]。</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>输入: [2,2,3,4]<br>输出: 3<br>解释:<br>有效的组合是: </p>
-<ul>
-<li>2,3,4 (使用第一个 2)</li>
-<li>2,3,4 (使用第二个 2)</li>
-<li>2,2,3</li>
-</ul>
-<h2 id="思路一"><a href="#思路一" class="headerlink" title="思路一"></a>思路一</h2><p><strong>双指针加贪心</strong></p>
-<p>先排序，固定一值k，利用双指针i,j，判断是否能构成三角形</p>
-<p>判断三角形方法：</p>
-<ul>
-<li>两边之和大于第三边，即<strong>nums[i] + nums[j] &gt; nums[k]</strong></li>
-</ul>
-<p>同时，若有i,j 满足nums[i] + nums[j] &gt; nums[k]，则同时有</p>
-<ul>
-<li>nums[i+1] + nums[j] &gt; nums[k]</li>
-<li>nums[i+2] + nums[j] &gt; nums[k]</li>
-<li>nums[i+3] + nums[j] &gt; nums[k]</li>
-<li>…..</li>
-<li>nums[j-1] + nums[j] &gt; nums[k]</li>
-</ul>
-<p><strong>时间复杂度</strong> ：O(N^2)<br><strong>空间复杂度</strong> ：O(1)</p>
-<h2 id="AC代码一"><a href="#AC代码一" class="headerlink" title="AC代码一"></a>AC代码一</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
-public:
-    int triangleNumber(vector&lt;int&gt;&amp; nums) &#123;
-        if(nums.size() &lt; 3) return 0;
-        sort(nums.begin(),nums.end());
-        int ans &#x3D; 0;
-        for(int k &#x3D; nums.size() - 1;k &gt;&#x3D; 2;k--)&#123;
-            int i &#x3D; 0,j &#x3D; k - 1;
-            while(i &lt; j)&#123;
-                if(nums[i] + nums[j] &gt; nums[k])&#123;
-                    ans +&#x3D; j - i;
-                    j--;
-                &#125;else&#123;
-                    i++;
-                &#125;
-            &#125;
-        &#125;
-        return ans;
+                <h1 id="a-b-高精度"><a href="#a-b-高精度" class="headerlink" title="a^b,高精度"></a>a^b,高精度</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>求 a 的 b 次方对 p 取模的值。</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>三个整数 a,b,p ,在同一行用空格隔开。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出一个整数，表示a^b mod p的值。</p>
+<h3 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h3><ul>
+<li>0 ≤ a,b ≤ 109</li>
+<li>1 ≤ p ≤ 109<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2>3^9 = 3^(1 + 0 + 0 + 8);<br>9 = 1001;<br>即每一位上，<strong>若是1，就乘a</strong>。<br>每<strong>一步</strong>a * a;<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+using namespace std;
+int main()
+&#123;
+    int a,b,p;
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; p;
+    int res &#x3D; 1 % p; &#x2F;&#x2F; 防止b &#x3D; 0，p &#x3D; 1，出现错误
+    while(b)&#123;
+        if(b &amp; 1) res &#x3D; res * 1ll * a % p;
+        &#x2F;&#x2F; 1ll可以转换为long long 类型
+        a &#x3D; a * 1ll * a % p;
+        b &gt;&gt;&#x3D; 1; &#x2F;&#x2F; 将b向右移动一位
     &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    cout &lt;&lt; res &lt;&lt; endl;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 
-<h2 id="思路二"><a href="#思路二" class="headerlink" title="思路二"></a>思路二</h2><p><strong>暴力美学</strong><br>直接开三个循环，赌这个数据量能过</p>
-<p><strong>时间复杂度</strong> ：O(N^3)<br><strong>空间复杂度</strong> ：O(1)</p>
-<h2 id="代码二"><a href="#代码二" class="headerlink" title="代码二"></a>代码二</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
-public:
-    int triangleNumber(vector&lt;int&gt;&amp; nums) &#123;
-        if(nums.size() &lt; 3) return 0;
-        int ans &#x3D; 0,n &#x3D; nums.size();
-        sort(nums.begin(),nums.end());
-        for(int i &#x3D; 0;i &lt; n;i++)&#123;
-            for(int j &#x3D; i+1;j &lt; n;j++)&#123;
-                for(int k &#x3D; j+1;k &lt; n;k++)&#123;
-                    if(nums[i] + nums[j] &gt; nums[k])
-                        ans++;
-                &#125;
-            &#125;
-        &#125;
-        return ans;
-    &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>我试过了，超时，明明数据量也不大，真是。</p>
-<h2 id="思路三"><a href="#思路三" class="headerlink" title="思路三"></a>思路三</h2><p><strong>排序加二分查找</strong><br>先排序，在开个双重循环，充当两条较小边，使用二分查找，找到满足条件的最大的边。</p>
-<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
-public:
-    int triangleNumber(vector&lt;int&gt;&amp; nums) &#123;
-        int n &#x3D; nums.size();
-        sort(nums.begin(), nums.end());
-        int ans &#x3D; 0;
-        for (int i &#x3D; 0; i &lt; n; ++i) &#123;
-            for (int j &#x3D; i + 1; j &lt; n; ++j) &#123;
-                int left &#x3D; j + 1, right &#x3D; n - 1, k &#x3D; j;
-                while (left &lt;&#x3D; right) &#123;
-                    int mid &#x3D; (left + right) &#x2F; 2;
-                    if (nums[mid] &lt; nums[i] + nums[j]) &#123;
-                        k &#x3D; mid;
-                        left &#x3D; mid + 1;
-                    &#125;
-                    else &#123;
-                        right &#x3D; mid - 1;
-                    &#125;
-                &#125;
-                ans +&#x3D; k - j;
-            &#125;
-        &#125;
-        return ans;
-    &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -592,7 +524,7 @@ public:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">曹毅</a>
+                    <a href="/about" rel="external nofollow noreferrer">scholar</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -602,7 +534,7 @@ public:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://scholar18.github.io/%E6%9C%89%E6%95%88%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E4%B8%AA%E6%95%B0/">https://scholar18.github.io/%E6%9C%89%E6%95%88%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E4%B8%AA%E6%95%B0/</a>
+                    <a href="https://scholar18.github.io/a%E7%9A%84b%E6%AC%A1%E6%96%B9/">https://scholar18.github.io/a%E7%9A%84b%E6%AC%A1%E6%96%B9/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -615,7 +547,7 @@ public:
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="/about" target="_blank">曹毅</a>
+                    <a href="/about" target="_blank">scholar</a>
                     !
                 </span>
             </div>
@@ -687,29 +619,29 @@ public:
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/LeetCode%E7%AC%AC253%E5%9C%BA%E5%8D%95%E5%91%A8%E8%B5%9B/">
+                <a href="/%E5%A0%86%E4%BC%98%E5%8C%96Dijkstra/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="LeetCode第253场单周赛">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="堆优化Dijkstra">
                         
-                        <span class="card-title">LeetCode第253场单周赛</span>
+                        <span class="card-title">堆优化Dijkstra</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            图论
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-08
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-25
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            曹毅
+                            scholar
                             
                         </span>
                     </div>
@@ -724,29 +656,28 @@ public:
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/%E6%9C%80%E7%9F%AD%E6%97%A0%E5%BA%8F%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84/">
+                <a href="/LeetCode%E7%AC%AC%20256%20%E5%9C%BA%E5%91%A8%E8%B5%9B/">
                     <div class="card-image">
                         
+                        <img src="/../images/%E5%93%88%E5%B8%8C.jpg" class="responsive-img" alt="LC第256场周赛题解">
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="最短无序连续子数组">
-                        
-                        <span class="card-title">最短无序连续子数组</span>
+                        <span class="card-title">LC第256场周赛题解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            AC两道，排名1925
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            曹毅
+                            scholar
                             
                         </span>
                     </div>

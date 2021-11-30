@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="朴素Dijkstra, Scholar&#39;s Blog">
+    <meta name="keywords" content="Shell脚本, Scholar&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>朴素Dijkstra | Scholar&#39;s Blog</title>
+    <title>Shell脚本 | Scholar&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">朴素Dijkstra</h1>
+                    <h1 class="description center-align post-title">Shell脚本</h1>
                 </div>
             </div>
         </div>
@@ -443,28 +443,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-25
+                    2021-11-29
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-11-25
+                    2021-11-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    349
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    5 分
                 </div>
                 
 
@@ -487,64 +487,169 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="朴素Dijkstra学习笔记"><a href="#朴素Dijkstra学习笔记" class="headerlink" title="朴素Dijkstra学习笔记"></a>朴素Dijkstra学习笔记</h1><h2 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h2><ul>
-<li>最短路径问题-&gt;单源最短路-&gt;所有边权都是正数</li>
-<li><strong>稠密图</strong>，即边数m与$n^2$相近</li>
-<li>用<strong>邻接矩阵</strong>储存<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2></li>
+                <h1 id="Shell脚本学习笔记"><a href="#Shell脚本学习笔记" class="headerlink" title="Shell脚本学习笔记"></a>Shell脚本学习笔记</h1><h2 id="脚本入门"><a href="#脚本入门" class="headerlink" title="脚本入门"></a>脚本入门</h2><pre><code>ps:本文出现脚本均在hadoop中运行
+</code></pre>
+<h3 id="脚本格式"><a href="#脚本格式" class="headerlink" title="脚本格式"></a>脚本格式</h3><ul>
+<li><p>脚本以$#!/bin/bash$ 开头, 表示选用<strong>bash</strong>作为脚本的解释器。</p>
+<h3 id="第一个shell脚本"><a href="#第一个shell脚本" class="headerlink" title="第一个shell脚本"></a>第一个shell脚本</h3><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>创建一个helloworld.sh文件<br>内容为：</p>
+<pre class="line-numbers language-none"><code class="language-none">#!&#x2F;bin&#x2F;bash
+echo &quot;HelloWorld Cao sang&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>运行helloworld.sh脚本</p>
+<p>  sh helloworld.sh<br>  或<br>  bash helloworld.sh<br>  或<br>  bash 绝对路径/helloworld.sh<br>  或<br>  sh 绝对路径/helloworld.sh<br>若直接调用 helloworld.sh则权限不够，主要原因是我们用bash,sh解析器运行脚本时，是<strong>解析器去执行helloworld.sh文件</strong>，所以脚本自身<strong>不需要执行权限</strong>。</p>
+</li>
 </ul>
-<p>$$O(N^2)$$<br><strong>N为点数</strong></p>
-<h2 id="思想解释"><a href="#思想解释" class="headerlink" title="思想解释"></a>思想解释</h2><ul>
-<li><strong>dist</strong>表示点离起点的距离，s存储每个点离起点的<strong>最短值</strong></li>
-<li>1.dist[1] = 0; // 表示1到起点距离为0</li>
-<li>2.遍历所有点，找到<strong>不属于s的点</strong>中离起点最近的点，记录为<strong>t</strong></li>
-<li>将其存入<strong>s</strong>中</li>
-<li>用<strong>t</strong>这一点更新<strong>其他点</strong>离起点的距离</li>
-</ul>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/851/">https://www.acwing.com/problem/content/851/</a></p>
-<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-using namespace std;
+<p>若是直接输出helloworld.sh文件，就是helloworld.sh这个文件去执行它本身，<strong>自己调用自己需要执行权限</strong>。</p>
+<p>我们可以执行 $\color{red}{chmod 777 helloworld.sh}$来给予脚本权限</p>
+<p>然后就可以用<strong>脚本文件自己来执行自己</strong></p>
+<p>相对路径</p>
+<pre><code>./helloworld.sh
+</code></pre>
+<p>绝对路径</p>
+<pre><code>绝对路径/helloworld.sh
+</code></pre>
+<h3 id="第二个shell脚本"><a href="#第二个shell脚本" class="headerlink" title="第二个shell脚本"></a>第二个shell脚本</h3><p>多命令处理</p>
+<p>1.需求</p>
+<p>在指定目录里建立.txt文件，并在.txt文件里输入”I love cls”</p>
+<p>2.实例实操</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">touch batch.sh
+vim batch.sh
+#!&#x2F;bin&#x2F;bash
+cd &#x2F;home&#x2F;atguigu
+touch cls.txt
+echo &quot;I love cls&quot; &gt;&gt; cls.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="脚本中的变量"><a href="#脚本中的变量" class="headerlink" title="脚本中的变量"></a>脚本中的变量</h2><h3 id="系统变量"><a href="#系统变量" class="headerlink" title="系统变量"></a>系统变量</h3><h4 id="1-常用系统变量"><a href="#1-常用系统变量" class="headerlink" title="1.常用系统变量"></a>1.常用系统变量</h4><p>$HOME, $PWD, $SHELL, $USER等</p>
+<h4 id="2-案例实操"><a href="#2-案例实操" class="headerlink" title="2.案例实操"></a>2.案例实操</h4><h5 id="1-查看系统变量的值"><a href="#1-查看系统变量的值" class="headerlink" title="(1) 查看系统变量的值"></a>(1) 查看系统变量的值</h5><pre><code>[atguigu@hadoop101 datas]$ echo $HOME
+/home/atguigu
+</code></pre>
+<h5 id="2-显示当前shell中所有变量-：-set"><a href="#2-显示当前shell中所有变量-：-set" class="headerlink" title="(2) 显示当前shell中所有变量 ： set"></a>(2) 显示当前shell中所有变量 ： set</h5><pre><code>[atguigu@hadoop101 datas]$ set
+BASH=/bin/bash
+BASH_ALIASES=()
+BASH_ARGC=()
+BASH_ARGV=()
+</code></pre>
+<h3 id="自定义变量"><a href="#自定义变量" class="headerlink" title="自定义变量"></a>自定义变量</h3><h4 id="1-基本语法"><a href="#1-基本语法" class="headerlink" title="1.基本语法"></a>1.基本语法</h4><p>(1)定义变量：<br>变量=值</p>
+<p>(2)撤销变量:unset变量</p>
+<p>(3)声明静态变量:readonly变量,注意：不能unset</p>
+<h4 id="2-变量定义规则"><a href="#2-变量定义规则" class="headerlink" title="2.变量定义规则"></a>2.变量定义规则</h4><p>(1) 有字母，数字，下划线构成，不能以数字开头,另外：$\color{red}{环境变量名建议大写}$</p>
+<p>(2) $\color{red}{等号两侧不能有空格}$</p>
+<p>(3) 在bash中,变量默认类型都是<strong>字符串类型</strong>,无法直接进行数值运算</p>
+<p>(4) 变量值如果有空格,<strong>需要用双引号或单引号括起来</strong></p>
+<h4 id="3-案例实操"><a href="#3-案例实操" class="headerlink" title="3.案例实操"></a>3.案例实操</h4><p>(1)定义变量A</p>
+<pre><code>[atguigu@hadoop101 datas]$ A=5
+[atguigu@hadoop101 datas]$ echo $A
+5
+</code></pre>
+<p>(2)给变量A重新赋值</p>
+<pre><code>[atguigu@hadoop101 datas]$ A=8
+[atguigu@hadoop101 datas]$ echo $A
+8
+</code></pre>
+<p>(3)撤销变量A</p>
+<pre><code>[atguigu@hadoop101 datas]$ unset A
+[atguigu@hadoop101 datas]$ echo $A
+</code></pre>
+<p>(4)声明静态变量B=2,不能unset</p>
+<pre><code>[atguigu@hadoop101 datas]$ readonly B=2
+[atguigu@hadoop101 datas]$ echo $B
+2
+[atguigu@hadoop101 datas]$ B=9
+-bash:B:readonly variable
+</code></pre>
+<p>(5)在bash中,变量类型均为字符串,无法直接进行数值运算</p>
+<pre><code>[atguigu@hadoop101 datas]$ C=1+1
+[atguigu@hadoop101 datas]$ echo $C
+1+1
+</code></pre>
+<p>(6)变量的值如果用空格,应用双引号或单引号括起来</p>
+<pre><code>[atguigu@hadoop101 datas]$ D=I love xiaohua
+-bash: world:command not found
+[atguigu@hadoop101 datas]$ D=&quot;I love xiaohua&quot;
+[atguigu@hadoop101 datas]$ echo $D
+</code></pre>
+<p>(7)可把变量提升为全局变量，供其他Shell程序使用<br><strong>export</strong> 变量名</p>
+<pre><code>[atguigu@hadoop101 datas]$ vim helloworld.sh
+#!/bin/bash
+echo &quot;helloworld&quot;
+echo $B
+[atguigu@hadoop101 datas]$ ./helloworld.sh
+helloworld
+</code></pre>
+<p>发现没有打印变量B的值</p>
+<pre><code>[atguigu@hadoop101 datas]$ export B
+[atguigu@hadoop101 datas]$ bash helloworld.sh
+helloworld
+2
+</code></pre>
+<h3 id="特殊变量：-n"><a href="#特殊变量：-n" class="headerlink" title="特殊变量：$n"></a>特殊变量：$n</h3><h4 id="1-基本语法-1"><a href="#1-基本语法-1" class="headerlink" title="1.基本语法"></a>1.基本语法</h4><p>$n (n为数字, $ 0代表该脚本的名字,$ 1~ $ 9代表输入的第一到第九个参数,十以上的参数需要用大括号包含,如${10})</p>
+<h4 id="2-实例操作"><a href="#2-实例操作" class="headerlink" title="2.实例操作"></a>2.实例操作</h4><pre><code>[atguigu@hadoop101 datas]$ touch parameter.sh 
+[atguigu@hadoop101 datas]$ vim parameter.sh
 
-const int N &#x3D; 510;
+#!/bin/bash
+echo &quot;$0  $1   $2&quot;
 
-int dist[N];
-bool s[N];
-int g[N][N];
-int n, m;
+[atguigu@hadoop101 datas]$ chmod 777 parameter.sh
 
-int dijkstra()
-&#123;
-    memset(dist, 0x3f, sizeof dist);
-    dist[1] &#x3D; 0;
-    for (int i &#x3D; 0; i &lt; n; i ++)
-    &#123;
-        int t &#x3D; -1;
-        for (int j &#x3D; 1; j &lt;&#x3D; n; j++)
-            if(!s[j] &amp;&amp; (t &#x3D;&#x3D; -1 || dist[t] &gt; dist[j]))
-                t &#x3D; j;
-        s[t] &#x3D; true;
-        
-        for (int j &#x3D; 1; j &lt;&#x3D; n; j ++)
-            dist[j] &#x3D; min(dist[j], dist[t] + g[t][j]);
-    &#125;
-    if(dist[n] &#x3D;&#x3D; 0x3f3f3f3f) return -1;
-    return dist[n];
-&#125;
-int main()
-&#123;
-    memset(g, 0x3f, sizeof g);
-    scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
-    for (int i &#x3D; 1; i &lt;&#x3D; m; i ++) 
-    &#123;
-        int a, b, c;
-        scanf(&quot;%d%d%d&quot;, &amp;a, &amp;b, &amp;c);
-        g[a][b] &#x3D; min(g[a][b], c);
-    &#125;
-    printf(&quot;%d&quot;,dijkstra());
-    
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+[atguigu@hadoop101 datas]$ ./parameter.sh cls  xz
+./parameter.sh  cls   xz
+</code></pre>
+<h3 id="特殊变量："><a href="#特殊变量：" class="headerlink" title="特殊变量：$#"></a>特殊变量：$#</h3><h4 id="1-基本语法-2"><a href="#1-基本语法-2" class="headerlink" title="1.基本语法"></a>1.基本语法</h4><p>$# : 获取输入参数的个数，<strong>常用于循环</strong>,<strong>不包含脚本名</strong></p>
+<h4 id="2-实例操作-1"><a href="#2-实例操作-1" class="headerlink" title="2.实例操作"></a>2.实例操作</h4><pre><code>[atguigu@hadoop101 datas]$ vim parameter.sh
+
+#!/bin/bash
+echo &quot;$0  $1   $2&quot;
+echo $#
+
+[atguigu@hadoop101 datas]$ chmod 777 parameter.sh
+
+[atguigu@hadoop101 datas]$ ./parameter.sh cls  xz
+parameter.sh cls xz 
+2
+</code></pre>
+<h3 id="特殊变量-："><a href="#特殊变量-：" class="headerlink" title="特殊变量 ：$ *, $ @"></a>特殊变量 ：$ *, $ @</h3><h4 id="1-基本语法-3"><a href="#1-基本语法-3" class="headerlink" title="1.基本语法"></a>1.基本语法</h4><p>$* 代表命令行中的所有参数，把所有参数当成一个整体</p>
+<p>$# 代表命令行中的所有参数，但把每个参数区别对待</p>
+<p>基本$* <strong>代表把参数凑成一个字符串</strong></p>
+<p>$# <strong>把参数存储在一个数组里，我类比其他语言，感觉是这样</strong></p>
+<h4 id="2-实例操作-2"><a href="#2-实例操作-2" class="headerlink" title="2.实例操作"></a>2.实例操作</h4><pre><code>[atguigu@hadoop101 datas]$ vim parameter.sh
+
+#!/bin/bash
+echo &quot;$0  $1   $2&quot;
+echo $#
+echo $*
+echo $@
+
+[atguigu@hadoop101 datas]$ bash parameter.sh 1 2 3
+parameter.sh  1   2
+3
+1 2 3
+1 2 3
+</code></pre>
+<h3 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量:$?"></a>特殊变量:$?</h3><h4 id="1-基本语法-4"><a href="#1-基本语法-4" class="headerlink" title="1.基本语法"></a>1.基本语法</h4><p>$? 判断最后一次命令执行的状态,若为<strong>0</strong>，则表示命令正常执行；</p>
+<p>如果返货一个<strong>非0</strong>的数(具体是什么数，由命令决定)，证明上一个命令执行不正确。</p>
+<h4 id="2-实例操作-3"><a href="#2-实例操作-3" class="headerlink" title="2.实例操作"></a>2.实例操作</h4><pre><code>[atguigu@hadoop101 datas]$ ./helloworld.sh
+helloworld
+[atguigu@hadoop101 datas]$ echo $?
+0
+</code></pre>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="1-基本语法-5"><a href="#1-基本语法-5" class="headerlink" title="1.基本语法"></a>1.基本语法</h3><p>(1) $((运算式)) 或 $[运算式]<br>(2) expr +,-,*,/,% 加减乘除取余</p>
+<p>$\color{red}{注意exper运算符之间要有空格}$</p>
+<h3 id="2-实例操作-4"><a href="#2-实例操作-4" class="headerlink" title="2.实例操作"></a>2.实例操作</h3><p>(1) 计算 1 + 2的值</p>
+<pre><code>[atguigu@hadoop101 datas]$ exper 1 + 2
+3
+</code></pre>
+<p>(2)计算 3 - 2的值</p>
+<pre><code>[atguigu@hadoop101 datas]$ exper 3 - 2
+1
+</code></pre>
+<p>(3) 计算$(2+3)X4$</p>
+<p>exper一步完成运算</p>
+<pre><code>exper `exper 2 + 3 `*4
+</code></pre>
+<p>采用$[运算符]解决</p>
+<pre><code>[atguigu@hadoop101 datas]$ S=$[(2+3)*4] 
+[atguigu@hadoop101 datas]$ echo S
+20   
+</code></pre>
+
                 
             </div>
             <hr/>
@@ -570,7 +675,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://scholar18.github.io/Dijkstra/">https://scholar18.github.io/Dijkstra/</a>
+                    <a href="https://scholar18.github.io/Shell%E5%85%A5%E9%97%A8/">https://scholar18.github.io/Shell%E5%85%A5%E9%97%A8/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -651,9 +756,48 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/Shell%E5%85%A5%E9%97%A8/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Shell脚本">
+                        
+                        <span class="card-title">Shell脚本</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            大数据
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            scholar
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/Prim/">
                     <div class="card-image">
@@ -671,45 +815,8 @@ int main()
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-27
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            scholar
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/bellman-ford/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="bellman-ford">
-                        
-                        <span class="card-title">bellman-ford</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            图论
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-27
                             </span>
                         <span class="publish-author">
                             

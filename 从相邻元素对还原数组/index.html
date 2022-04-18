@@ -459,6 +459,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -477,10 +480,66 @@
 </ul>
 <h2 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h2><p>nums.length == n<br>adjacentPairs.length == n - 1<br>adjacentPairs[i].length == 2<br>2 &lt;= n &lt;= 105<br>-105 &lt;= nums[i], ui, vi &lt;= 105</p>
 <h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><p>除首尾元素，每个元素均出现两次</p>
-<h2 id="AC代码一"><a href="#AC代码一" class="headerlink" title="AC代码一"></a>AC代码一</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">restoreArray</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; ad)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> front,last;</span><br><span class="line">        unordered_map&lt;<span class="keyword">int</span>,vector&lt;<span class="keyword">int</span>&gt;&gt; hash;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp;a:ad)&#123;</span><br><span class="line">            hash[a[<span class="number">0</span>]].<span class="built_in">push_back</span>(a[<span class="number">1</span>]);</span><br><span class="line">            hash[a[<span class="number">1</span>]].<span class="built_in">push_back</span>(a[<span class="number">0</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;h:hash)&#123;</span><br><span class="line">            <span class="keyword">if</span>(h.second.<span class="built_in">size</span>() == <span class="number">1</span>)&#123;</span><br><span class="line">                front = h.first;</span><br><span class="line">                ans.<span class="built_in">push_back</span>(front);</span><br><span class="line">                last = h.second[<span class="number">0</span>];</span><br><span class="line">                ans.<span class="built_in">push_back</span>(last);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(hash[last].<span class="built_in">size</span>() != <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i:hash[last])&#123;</span><br><span class="line">                <span class="keyword">if</span>(i != front)&#123;</span><br><span class="line">                    front = last;</span><br><span class="line">                    last = i;</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(i);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="AC代码一"><a href="#AC代码一" class="headerlink" title="AC代码一"></a>AC代码一</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
+public:
+    vector&lt;int&gt; restoreArray(vector&lt;vector&lt;int&gt;&gt;&amp; ad) &#123;
+        int front,last;
+        unordered_map&lt;int,vector&lt;int&gt;&gt; hash;
+        for(auto&amp;a:ad)&#123;
+            hash[a[0]].push_back(a[1]);
+            hash[a[1]].push_back(a[0]);
+        &#125;
+        vector&lt;int&gt; ans;
+        for(auto &amp;h:hash)&#123;
+            if(h.second.size() &#x3D;&#x3D; 1)&#123;
+                front &#x3D; h.first;
+                ans.push_back(front);
+                last &#x3D; h.second[0];
+                ans.push_back(last);
+                break;
+            &#125;
+        &#125;
+        while(hash[last].size() !&#x3D; 1)&#123;
+            for(int i:hash[last])&#123;
+                if(i !&#x3D; front)&#123;
+                    front &#x3D; last;
+                    last &#x3D; i;
+                    ans.push_back(i);
+                    break;
+                &#125;
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>思路：<br>将每个元素与其相邻的元素一对一或一对多的关系，记录在map<br>中，找到首元素或尾元素，根据映射关系，逐步向后，直至找到尾元素或首元素。如：1-&gt;2,2-&gt;3,3-&gt;4.</p>
-<h2 id="AC代码二"><a href="#AC代码二" class="headerlink" title="AC代码二"></a>AC代码二</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">restoreArray</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; adjacentPairs)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="keyword">int</span>, vector&lt;<span class="keyword">int</span>&gt;&gt; mp;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; adjacentPair : adjacentPairs) &#123;</span><br><span class="line">            mp[adjacentPair[<span class="number">0</span>]].<span class="built_in">push_back</span>(adjacentPair[<span class="number">1</span>]);</span><br><span class="line">            mp[adjacentPair[<span class="number">1</span>]].<span class="built_in">push_back</span>(adjacentPair[<span class="number">0</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> n = adjacentPairs.<span class="built_in">size</span>() + <span class="number">1</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">ret</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; [e, adj] : mp) &#123;</span><br><span class="line">            <span class="keyword">if</span> (adj.<span class="built_in">size</span>() == <span class="number">1</span>) &#123;</span><br><span class="line">                ret[<span class="number">0</span>] = e;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ret[<span class="number">1</span>] = mp[ret[<span class="number">0</span>]][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">auto</span>&amp; adj = mp[ret[i - <span class="number">1</span>]];</span><br><span class="line">            ret[i] = ret[i - <span class="number">2</span>] == adj[<span class="number">0</span>] ? adj[<span class="number">1</span>] : adj[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="AC代码二"><a href="#AC代码二" class="headerlink" title="AC代码二"></a>AC代码二</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">    class Solution &#123;
+    public:
+    vector&lt;int&gt; restoreArray(vector&lt;vector&lt;int&gt;&gt;&amp; adjacentPairs) &#123;
+        unordered_map&lt;int, vector&lt;int&gt;&gt; mp;
+        for (auto&amp; adjacentPair : adjacentPairs) &#123;
+            mp[adjacentPair[0]].push_back(adjacentPair[1]);
+            mp[adjacentPair[1]].push_back(adjacentPair[0]);
+        &#125;
+
+        int n &#x3D; adjacentPairs.size() + 1;
+        vector&lt;int&gt; ret(n);
+        for (auto&amp; [e, adj] : mp) &#123;
+            if (adj.size() &#x3D;&#x3D; 1) &#123;
+                ret[0] &#x3D; e;
+                break;
+            &#125;
+        &#125;
+
+        ret[1] &#x3D; mp[ret[0]][0];
+        for (int i &#x3D; 2; i &lt; n; i++) &#123;
+            auto&amp; adj &#x3D; mp[ret[i - 1]];
+            ret[i] &#x3D; ret[i - 2] &#x3D;&#x3D; adj[0] ? adj[1] : adj[0];
+        &#125;
+        return ret;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>思路：<br>思路与AC代码一类似，但处理方式不同，显得简洁易懂。</p>
 
                 

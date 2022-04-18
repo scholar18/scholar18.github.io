@@ -462,6 +462,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -478,7 +481,18 @@
 <h2 id="示例二"><a href="#示例二" class="headerlink" title="示例二"></a>示例二</h2><p>输入：nums = [1,2,3,4]<br>输出：0</p>
 <h2 id="示例三"><a href="#示例三" class="headerlink" title="示例三"></a>示例三</h2><p>输入：nums = [1]<br>输出：0</p>
 <h2 id="思路一"><a href="#思路一" class="headerlink" title="思路一"></a>思路一</h2><p>新建一个数组，并排序，使用双指针，分别由前往后，有后往前，找到与愿数组第一个不同的下表记录，即找到需要排序的范围</p>
-<h2 id="AC代码一"><a href="#AC代码一" class="headerlink" title="AC代码一"></a>AC代码一</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findUnsortedSubarray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();    </span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; arr = nums;</span><br><span class="line">        <span class="built_in">sort</span>(arr.<span class="built_in">begin</span>(),arr.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt;= j &amp;&amp; nums[i] == arr[i]) i++;</span><br><span class="line">        <span class="keyword">while</span> (i &lt;= j &amp;&amp; nums[j] == arr[j]) j--;</span><br><span class="line">        <span class="keyword">return</span> j - i + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="AC代码一"><a href="#AC代码一" class="headerlink" title="AC代码一"></a>AC代码一</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
+public:
+    int findUnsortedSubarray(vector&lt;int&gt;&amp; nums) &#123;
+        int n &#x3D; nums.size();    
+        vector&lt;int&gt; arr &#x3D; nums;
+        sort(arr.begin(),arr.end());
+        int i &#x3D; 0, j &#x3D; n - 1;
+        while (i &lt;&#x3D; j &amp;&amp; nums[i] &#x3D;&#x3D; arr[i]) i++;
+        while (i &lt;&#x3D; j &amp;&amp; nums[j] &#x3D;&#x3D; arr[j]) j--;
+        return j - i + 1;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="思路二"><a href="#思路二" class="headerlink" title="思路二"></a>思路二</h2><p>三段处理，一三两端是不用排序的，中间一段是<strong>需要排序</strong>的。</p>
 <p>我们先找到第一个<strong>不符合升序</strong>的下标i，在找到最后一个<strong>不符合升序</strong>的下标j，这就简单分成了三段</p>
 <p>第一段 [0,i), <strong>第二段[i,j]</strong>, 第三段(j,n].<br>之后我们遍历第二段，遍历下标先用x代替</p>
@@ -492,7 +506,28 @@
 <li>若<strong>i = j</strong>，结果为 <strong>0</strong>.</li>
 </ul>
 <p>另，借助哨兵，进行一些细微调整。</p>
-<h2 id="AC代码二"><a href="#AC代码二" class="headerlink" title="AC代码二"></a>AC代码二</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findUnsortedSubarray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> MAX = <span class="number">100005</span>,MIN = <span class="number">-100005</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>,j = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; j &amp;&amp; nums[i] &lt;= nums[i+<span class="number">1</span>]) i++;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; j &amp;&amp; nums[j] &gt;= nums[j<span class="number">-1</span>]) j--;</span><br><span class="line">        <span class="keyword">int</span> l = i,r = j;</span><br><span class="line">        <span class="keyword">int</span> min = nums[i],max = nums[j];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x = l;x &lt;= r;x++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[x] &lt; min)&#123;</span><br><span class="line">                <span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; nums[x] &lt; nums[i])i--;</span><br><span class="line">                min = i &gt;= <span class="number">0</span> ?nums[i]:MIN;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(nums[x] &gt; max)&#123;</span><br><span class="line">                <span class="keyword">while</span>(j &lt; nums.<span class="built_in">size</span>() &amp;&amp; nums[x] &gt; nums[j])j++;</span><br><span class="line">                max = j &lt; nums.<span class="built_in">size</span>()?nums[j]:MAX;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> i == j ? <span class="number">0</span> : (j - <span class="number">1</span>) - (i + <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="AC代码二"><a href="#AC代码二" class="headerlink" title="AC代码二"></a>AC代码二</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
+public:
+    int findUnsortedSubarray(vector&lt;int&gt;&amp; nums) &#123;
+        int MAX &#x3D; 100005,MIN &#x3D; -100005;
+        int i &#x3D; 0,j &#x3D; nums.size() - 1;
+        while(i &lt; j &amp;&amp; nums[i] &lt;&#x3D; nums[i+1]) i++;
+        while(i &lt; j &amp;&amp; nums[j] &gt;&#x3D; nums[j-1]) j--;
+        int l &#x3D; i,r &#x3D; j;
+        int min &#x3D; nums[i],max &#x3D; nums[j];
+        for(int x &#x3D; l;x &lt;&#x3D; r;x++)&#123;
+            if(nums[x] &lt; min)&#123;
+                while(i &gt;&#x3D; 0 &amp;&amp; nums[x] &lt; nums[i])i--;
+                min &#x3D; i &gt;&#x3D; 0 ?nums[i]:MIN;
+            &#125;
+            if(nums[x] &gt; max)&#123;
+                while(j &lt; nums.size() &amp;&amp; nums[x] &gt; nums[j])j++;
+                max &#x3D; j &lt; nums.size()?nums[j]:MAX;
+            &#125;
+        &#125;
+        return i &#x3D;&#x3D; j ? 0 : (j - 1) - (i + 1) + 1;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -731,13 +766,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/%E6%9C%89%E6%95%88%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E4%B8%AA%E6%95%B0/">
+                <a href="/%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%88%98%E6%96%97%E5%8A%9B%E6%9C%80%E5%BC%B1%E7%9A%84k%E8%A1%8C/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="有效三角形的个数">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="矩阵中战斗力最弱的k行">
                         
-                        <span class="card-title">有效三角形的个数</span>
+                        <span class="card-title">矩阵中战斗力最弱的k行</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -768,13 +803,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9E%82%E5%BA%8F%E9%81%8D%E5%8E%86/">
+                <a href="/%E6%9C%89%E6%95%88%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E4%B8%AA%E6%95%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="二叉树的垂序遍历">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="有效三角形的个数">
                         
-                        <span class="card-title">二叉树的垂序遍历</span>
+                        <span class="card-title">有效三角形的个数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

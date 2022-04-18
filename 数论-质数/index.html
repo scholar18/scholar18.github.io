@@ -458,6 +458,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -466,16 +469,57 @@
                 <h1 id="质数"><a href="#质数" class="headerlink" title="质数"></a>质数</h1><p>在大于1的整数中，如果只包含1和其本身这两个约数，就被称为质数，或者素数。</p>
 <h2 id="1-质数的判定"><a href="#1-质数的判定" class="headerlink" title="1.质数的判定"></a>1.质数的判定</h2><p>一般我们习惯使用—–试除法(sqrt(N))</p>
 <p>即</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n / i; i ++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(n % i == <span class="number">0</span>)&#123;</span><br><span class="line">        .....</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for (int i &#x3D; 2; i &lt;&#x3D; n &#x2F; i; i ++)
+&#123;
+    if(n % i &#x3D;&#x3D; 0)&#123;
+        .....
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="2-分解质因数—–试除法"><a href="#2-分解质因数—–试除法" class="headerlink" title="2.分解质因数—–试除法"></a>2.分解质因数—–试除法</h2><ul>
 <li>质因数（素因数或质因子）在数论里是指能整除给定正整数的质数</li>
-<li>分解质因数，即一个大于1的数一定可以由多个相同或不同的质数相乘得到，我们即寻找这些质数<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/869/">https://www.acwing.com/problem/content/869/</a><h3 id="ACcode"><a href="#ACcode" class="headerlink" title="ACcode"></a>ACcode</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, x;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">while</span>(n --)</span><br><span class="line">    &#123;</span><br><span class="line">        cin &gt;&gt; x;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n / i; i ++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(x % i == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">int</span> s = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>(x % i == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    s ++;</span><br><span class="line">                    x /= i;</span><br><span class="line">                &#125;</span><br><span class="line">                cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; s &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(x &gt; <span class="number">1</span>) cout &lt;&lt; x &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; <span class="number">1</span> &lt;&lt; endl;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>分解质因数，即一个大于1的数一定可以由多个相同或不同的质数相乘得到，我们即寻找这些质数<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/869/">https://www.acwing.com/problem/content/869/</a><h3 id="ACcode"><a href="#ACcode" class="headerlink" title="ACcode"></a>ACcode</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+int n, x;
+
+int main()
+&#123;
+    cin &gt;&gt; n;
+    while(n --)
+    &#123;
+        cin &gt;&gt; x;
+        for (int i &#x3D; 2; i &lt;&#x3D; n &#x2F; i; i ++)
+        &#123;
+            if(x % i &#x3D;&#x3D; 0)&#123;
+                int s &#x3D; 0;
+                while(x % i &#x3D;&#x3D; 0)
+                &#123;
+                    s ++;
+                    x &#x2F;&#x3D; i;
+                &#125;
+                cout &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; s &lt;&lt; endl;
+            &#125;
+        &#125;
+        if(x &gt; 1) cout &lt;&lt; x &lt;&lt; &quot; &quot; &lt;&lt; 1 &lt;&lt; endl;
+        cout &lt;&lt; endl;
+    &#125;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="筛质数"><a href="#筛质数" class="headerlink" title="筛质数"></a>筛质数</h2></li>
 </ul>
 <p>1.朴素筛法(<strong>nloglogn</strong>)</p>
 <p>有2~n这些数，我们从前向后依次筛去当前数的倍数</p>
 <p><strong>核心代码</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_primes</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (st[i]) <span class="keyword">continue</span>;</span><br><span class="line">        primes[cnt ++ ] = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + i; j &lt;= n; j += i)</span><br><span class="line">            st[j] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void get_primes(int n)
+&#123;
+    for (int i &#x3D; 2; i &lt;&#x3D; n; i ++ )
+    &#123;
+        if (st[i]) continue;
+        primes[cnt ++ ] &#x3D; i;
+        for (int j &#x3D; i + i; j &lt;&#x3D; n; j +&#x3D; i)
+            st[j] &#x3D; true;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>2.线性筛法(<strong>O(N)</strong>)</p>
 <p>核心思想：<strong>n只会被最小质因子筛去</strong></p>
@@ -485,7 +529,18 @@ pj一定是i的最小质因子，pj一定是pj*i的最小质因子
 pj 一定小于i的所有质因子,pj也一定是pj*i的最小质因子
 </code></pre>
 <p><strong>核心代码</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_primes</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!st[i]) primes[cnt ++ ] = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; primes[j] &lt;= n / i; j ++ )</span><br><span class="line">        &#123;</span><br><span class="line">            st[primes[j] * i] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % primes[j] == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void get_primes(int n)
+&#123;
+    for (int i &#x3D; 2; i &lt;&#x3D; n; i ++ )
+    &#123;
+        if (!st[i]) primes[cnt ++ ] &#x3D; i;
+        for (int j &#x3D; 0; primes[j] &lt;&#x3D; n &#x2F; i; j ++ )
+        &#123;
+            st[primes[j] * i] &#x3D; true;
+            if (i % primes[j] &#x3D;&#x3D; 0) break;
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>

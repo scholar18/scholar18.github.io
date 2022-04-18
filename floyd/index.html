@@ -458,6 +458,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -470,7 +473,47 @@
 <li><strong>三重</strong>循环更新，d[i][j]的<strong>最短路径</strong></li>
 <li>每次更新，遍历<strong>所有点</strong>，找到<strong>i到k到j</strong>的<strong>最小值</strong>用来更新</li>
 <li>同时，存在<strong>负权路径</strong>，所以结果<strong>可能小于INF，但不会小于INF/2</strong>，所以大于INF/2的路径都是<strong>不存在</strong>的</li>
-<li>切记，floyd算法中需要初始化<strong>d</strong>数组,d[i][j] 表示i到j的距离，初始化为<strong>无穷大</strong>，但<strong>i == j</strong>时，初始化为0.<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/856/">https://www.acwing.com/problem/content/856/</a><h2 id="ACcode"><a href="#ACcode" class="headerlink" title="ACcode"></a>ACcode</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">210</span>, INF = <span class="number">1e9</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> d[N][N];</span><br><span class="line"><span class="keyword">int</span> n, m, Q;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">floyd</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= n; k++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">                d[i][j] = <span class="built_in">min</span>(d[i][j], d[i][k] + d[k][j]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m &gt;&gt; Q;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">            <span class="keyword">if</span>(i == j) d[i][j] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> d[i][j] = INF;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i ++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> a, b, c;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">        d[a][b] = <span class="built_in">min</span>(d[a][b], c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">floyd</span>();</span><br><span class="line">    <span class="keyword">while</span>(Q --)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> a, b;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        <span class="keyword">if</span>(d[a][b] &gt; INF / <span class="number">2</span>) cout &lt;&lt; <span class="string">&quot;impossible&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">else</span> cout &lt;&lt; d[a][b] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>切记，floyd算法中需要初始化<strong>d</strong>数组,d[i][j] 表示i到j的距离，初始化为<strong>无穷大</strong>，但<strong>i == j</strong>时，初始化为0.<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/856/">https://www.acwing.com/problem/content/856/</a><h2 id="ACcode"><a href="#ACcode" class="headerlink" title="ACcode"></a>ACcode</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+const int N &#x3D; 210, INF &#x3D; 1e9;
+
+int d[N][N];
+int n, m, Q;
+
+void floyd()
+&#123;
+    for (int k &#x3D; 1; k &lt;&#x3D; n; k++)
+        for (int i &#x3D; 1; i &lt;&#x3D; n; i ++)
+            for (int j &#x3D; 1; j &lt;&#x3D; n; j ++)
+                d[i][j] &#x3D; min(d[i][j], d[i][k] + d[k][j]);
+&#125;
+int main()
+&#123;
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; Q;
+    for (int i &#x3D; 1; i &lt;&#x3D; n; i ++)
+        for (int j &#x3D; 1; j &lt;&#x3D; n; j ++)
+            if(i &#x3D;&#x3D; j) d[i][j] &#x3D; 0;
+            else d[i][j] &#x3D; INF;
+    for (int i &#x3D; 0; i &lt; m; i ++)
+    &#123;
+        int a, b, c;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+        d[a][b] &#x3D; min(d[a][b], c);
+    &#125;
+    floyd();
+    while(Q --)
+    &#123;
+        int a, b;
+        cin &gt;&gt; a &gt;&gt; b;
+        if(d[a][b] &gt; INF &#x2F; 2) cout &lt;&lt; &quot;impossible&quot; &lt;&lt; endl;
+        else cout &lt;&lt; d[a][b] &lt;&lt; endl;
+    &#125;
+    
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 
                 
@@ -711,13 +754,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/Dijkstra/">
+                <a href="/bellman-ford/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="朴素Dijkstra">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="bellman-ford">
                         
-                        <span class="card-title">朴素Dijkstra</span>
+                        <span class="card-title">bellman-ford</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -748,13 +791,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/bellman-ford/">
+                <a href="/spfa/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="bellman-ford">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Spfa">
                         
-                        <span class="card-title">bellman-ford</span>
+                        <span class="card-title">Spfa</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

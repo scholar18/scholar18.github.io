@@ -459,6 +459,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -473,7 +476,21 @@
 <h2 id="示例一"><a href="#示例一" class="headerlink" title="示例一"></a>示例一</h2><p><img src="https://assets.leetcode.com/uploads/2020/10/15/smbt1.jpg" alt="这是图片" title="Magic Gardens"><br>输入：root = [2,2,5,null,null,5,7]<br>输出：5<br>解释：最小的值是 2 ，第二小的值是 5 。</p>
 <h2 id="示例二"><a href="#示例二" class="headerlink" title="示例二"></a>示例二</h2><p><img src="https://assets.leetcode.com/uploads/2020/10/15/smbt2.jpg" alt="这是图片哦" title="Magic Gardens"><br>输入：root = [2,2,2]<br>输出：-1<br>解释：最小的值是 2, 但是不存在第二小的值。</p>
 <h2 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h2><p>根据题目要求，父结点一定是他和两个子结点中最小的，且如果有两个子结点，一定有一个以上的子结点与父结点相等，所以第二小的结点一定在字结点中较大的那个结点所在的路径里。<br>利用递归遍历结点，很容易写出代码。</p>
-<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findSecondMinimumValue</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">firstbigger</span>(root, root -&gt; val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">firstbigger</span><span class="params">(TreeNode* root, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span> (root -&gt; val &gt; val) <span class="keyword">return</span> root -&gt; val;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="built_in">firstbigger</span>(root -&gt; left, val);</span><br><span class="line">        <span class="keyword">int</span> r = <span class="built_in">firstbigger</span>(root -&gt; right, val);</span><br><span class="line">        <span class="keyword">if</span> (l &lt; <span class="number">0</span>) <span class="keyword">return</span> r;</span><br><span class="line">        <span class="keyword">if</span> (r &lt; <span class="number">0</span>) <span class="keyword">return</span> l;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(l, r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
+public:
+    int findSecondMinimumValue(TreeNode* root) &#123;
+        return firstbigger(root, root -&gt; val);
+    &#125;
+    int firstbigger(TreeNode* root, int val) &#123;
+        if (!root) return -1;
+        if (root -&gt; val &gt; val) return root -&gt; val;
+        int l &#x3D; firstbigger(root -&gt; left, val);
+        int r &#x3D; firstbigger(root -&gt; right, val);
+        if (l &lt; 0) return r;
+        if (r &lt; 0) return l;
+        return min(l, r);
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>

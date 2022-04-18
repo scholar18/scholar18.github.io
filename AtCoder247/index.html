@@ -466,7 +466,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="AtCode-247th"><a href="#AtCode-247th" class="headerlink" title="AtCode 247th"></a>AtCode 247th</h1><h2 id="A-Move-Right"><a href="#A-Move-Right" class="headerlink" title="A.Move Right"></a>A.Move Right</h2><h3 id="Problem-Address"><a href="#Problem-Address" class="headerlink" title="Problem Address"></a>Problem Address</h3><p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc247/tasks/abc247_a">https://atcoder.jp/contests/abc247/tasks/abc247_a</a></p>
+                <h1 id="AtCode247th"><a href="#AtCode247th" class="headerlink" title="AtCode247th"></a>AtCode247th</h1><h2 id="A-Move-Right"><a href="#A-Move-Right" class="headerlink" title="A.Move Right"></a>A.Move Right</h2><h3 id="Problem-Address"><a href="#Problem-Address" class="headerlink" title="Problem Address"></a>Problem Address</h3><p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc247/tasks/abc247_a">https://atcoder.jp/contests/abc247/tasks/abc247_a</a></p>
 <h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>你有四个空间,每个空间有1 或 0, 现将每个空间整体向后移动一位，空余空间用<strong>0</strong>填充。</p>
 <h3 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;bits&#x2F;stdc++.h&gt;
 #define x first
@@ -489,7 +489,7 @@ int main()
 <h2 id="B-Unique-Nicknames"><a href="#B-Unique-Nicknames" class="headerlink" title="B.Unique Nicknames"></a>B.Unique Nicknames</h2><h3 id="Problem-AAddress"><a href="#Problem-AAddress" class="headerlink" title="Problem AAddress"></a>Problem AAddress</h3><p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc247/tasks/abc247_b">https://atcoder.jp/contests/abc247/tasks/abc247_b</a></p>
 <h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><p>每个人有一个姓氏，一个名字。</p>
 <p>我们想要给每个人去一个绰号，绰号只能是这个人的姓氏或名字，且每个人的绰号不能与他人的名字和姓氏相同。</p>
-<h3 id="AC-code-1"><a href="#AC-code-1" class="headerlink" title="AC code"></a>AC code</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;bits&#x2F;stdc++.h&gt;
+<h3 id="AC-code-1"><a href="#AC-code-1" class="headerlink" title="AC code"></a>AC code</h3><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;bits&#x2F;stdc++.h&gt;
 #define x first
 #define y second 
 using namespace std;
@@ -527,7 +527,7 @@ int main()
 <h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><p>有一字符串S, 数组中每个元素满足这样的条件</p>
 <ul>
 <li>s[1] = 1;</li>
-<li>s[i] = s[i - 1] + i + s[i - 1];<h3 id="AC-code-2"><a href="#AC-code-2" class="headerlink" title="AC code"></a>AC code</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;bits&#x2F;stdc++.h&gt;
+<li>s[i] = s[i - 1] + i + s[i - 1];<h3 id="AC-code-2"><a href="#AC-code-2" class="headerlink" title="AC code"></a>AC code</h3><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;bits&#x2F;stdc++.h&gt;
 #define x first
 #define y second 
 using namespace std;
@@ -556,7 +556,7 @@ int main()
 <li>向管道的末尾放<strong>a</strong>个写着<strong>x</strong>的小球。</li>
 <li>取出前<strong>c</strong>个小球,并计算取出小球上数字的总和</li>
 </ul>
-<h3 id="AC-code-3"><a href="#AC-code-3" class="headerlink" title="AC code"></a>AC code</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;bits&#x2F;stdc++.h&gt;
+<h3 id="AC-code-3"><a href="#AC-code-3" class="headerlink" title="AC code"></a>AC code</h3><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;bits&#x2F;stdc++.h&gt;
 #define x first
 #define y second 
 using namespace std;
@@ -604,7 +604,7 @@ int main()
 <li>$1 \le l \le r \le n $ </li>
 <li>序列$A_l $ ~  $A_r$中最大值是x, 最小值是y<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3>我们将等于x和等于y的下标记录在两个数组中，将大于x and 小于y的数的下标记录在另一个数组中。<br>之后枚举每一个i，找到i的左边界和右边界</li>
 <li>对于左边界，它应该等于x或者等于y的下标的最大值</li>
-<li>对于右边界，它应该是第一个大于x or 小于 y 的一个数<br>这样我们保证这三个数组都是递增排列的，所以直接二分查找左右边界就行了<h3 id="AC-code-4"><a href="#AC-code-4" class="headerlink" title="AC code"></a>AC code</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;bits&#x2F;stdc++.h&gt;
+<li>对于右边界，它应该是第一个大于x or 小于 y 的一个数<br>这样我们保证这三个数组都是递增排列的，所以直接二分查找左右边界就行了<h3 id="AC-code-4"><a href="#AC-code-4" class="headerlink" title="AC code"></a>AC code</h3><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;bits&#x2F;stdc++.h&gt;
 using namespace std; 
 #define endl &quot;\n&quot;
 #define inf 0x3f3f3f3f

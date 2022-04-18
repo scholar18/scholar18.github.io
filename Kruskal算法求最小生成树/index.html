@@ -458,9 +458,6 @@
         <hr class="clearfix">
 
         
-        <!-- 是否加载使用自带的 prismjs. -->
-        <link rel="stylesheet" href="/libs/prism/prism.css">
-        
 
         
 
@@ -471,60 +468,7 @@
 <li>最好稀疏图<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2>$mlogm$<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2></li>
 <li>先以权重进行从小到大的排序</li>
 <li>遍历每一条边，若该边中两点不在一个集合中，让他俩加入一个集合，统计权重与进入集合个数</li>
-<li>因为本算法不用考虑边的储存问题,所以我们直接建立一个结构体存贮边，顺便重定义 <strong>&lt;</strong>,方便我们按权重排序<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/861/">https://www.acwing.com/problem/content/861/</a><h2 id="ACcode"><a href="#ACcode" class="headerlink" title="ACcode"></a>ACcode</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-
-using namespace std;
-
-const int M &#x3D; 200010;
-
-int p[M];
-int n, m;
-
-struct Edge&#123;
-    int a, b, w;
-    
-    bool operator &lt; (const Edge &amp;W)const 
-    &#123;
-        return w &lt; W.w;
-    &#125;
-&#125;edges[M];
-
-int find(int x)
-&#123;
-    if(p[x] !&#x3D; x) p[x] &#x3D; find(p[x]);
-    return p[x];
-&#125;
-int main()
-&#123;
-    cin &gt;&gt; n &gt;&gt; m;
-    for (int i &#x3D; 1; i &lt; n; i ++) p[i] &#x3D; i;
-    for (int i &#x3D; 0; i &lt; m; i ++)
-    &#123;
-        int a, b, w;
-        cin &gt;&gt; a &gt;&gt; b &gt;&gt; w;
-        edges[i] &#x3D; &#123;a, b, w&#125;;
-    &#125;
-    
-    sort(edges, edges + m);
-    int res &#x3D; 0, cnt &#x3D; 0;
-    for (int i &#x3D; 0; i &lt; m; i++)
-    &#123;
-        auto t &#x3D; edges[i];
-        int a &#x3D; find(t.a), b &#x3D; find(t.b);
-        if(a !&#x3D; b)
-        &#123;
-            p[a] &#x3D; b;
-            res +&#x3D; t.w;
-            cnt ++;
-        &#125;
-    &#125;
-    if(cnt &lt; n - 1) cout &lt;&lt; &quot;impossible&quot; &lt;&lt; endl;
-    else cout &lt;&lt; res &lt;&lt; endl;
-    
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>因为本算法不用考虑边的储存问题,所以我们直接建立一个结构体存贮边，顺便重定义 <strong>&lt;</strong>,方便我们按权重排序<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/861/">https://www.acwing.com/problem/content/861/</a><h2 id="ACcode"><a href="#ACcode" class="headerlink" title="ACcode"></a>ACcode</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M = <span class="number">200010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> p[M];</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> a, b, w;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Edge &amp;W)<span class="keyword">const</span> </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> w &lt; W.w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;edges[M];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(p[x] != x) p[x] = <span class="built_in">find</span>(p[x]);</span><br><span class="line">    <span class="keyword">return</span> p[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i ++) p[i] = i;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i ++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> a, b, w;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b &gt;&gt; w;</span><br><span class="line">        edges[i] = &#123;a, b, w&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">sort</span>(edges, edges + m);</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>, cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">auto</span> t = edges[i];</span><br><span class="line">        <span class="keyword">int</span> a = <span class="built_in">find</span>(t.a), b = <span class="built_in">find</span>(t.b);</span><br><span class="line">        <span class="keyword">if</span>(a != b)</span><br><span class="line">        &#123;</span><br><span class="line">            p[a] = b;</span><br><span class="line">            res += t.w;</span><br><span class="line">            cnt ++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(cnt &lt; n - <span class="number">1</span>) cout &lt;&lt; <span class="string">&quot;impossible&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">else</span> cout &lt;&lt; res &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
                 

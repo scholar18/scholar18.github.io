@@ -458,9 +458,6 @@
         <hr class="clearfix">
 
         
-        <!-- 是否加载使用自带的 prismjs. -->
-        <link rel="stylesheet" href="/libs/prism/prism.css">
-        
 
         
 
@@ -471,8 +468,7 @@
 <h3 id="脚本格式"><a href="#脚本格式" class="headerlink" title="脚本格式"></a>脚本格式</h3><ul>
 <li><p>脚本以$#!/bin/bash$ 开头, 表示选用<strong>bash</strong>作为脚本的解释器。</p>
 <h3 id="第一个shell脚本"><a href="#第一个shell脚本" class="headerlink" title="第一个shell脚本"></a>第一个shell脚本</h3><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>创建一个helloworld.sh文件<br>内容为：</p>
-<pre class="line-numbers language-none"><code class="language-none">#!&#x2F;bin&#x2F;bash
-echo &quot;HelloWorld Cao sang&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">echo &quot;HelloWorld Cao sang&quot;</span><br></pre></td></tr></table></figure>
 <p>运行helloworld.sh脚本</p>
 <p>  sh helloworld.sh<br>  或<br>  bash helloworld.sh<br>  或<br>  bash 绝对路径/helloworld.sh<br>  或<br>  sh 绝对路径/helloworld.sh<br>若直接调用 helloworld.sh则权限不够，主要原因是我们用bash,sh解析器运行脚本时，是<strong>解析器去执行helloworld.sh文件</strong>，所以脚本自身<strong>不需要执行权限</strong>。</p>
 </li>
@@ -490,12 +486,7 @@ echo &quot;HelloWorld Cao sang&quot;<span aria-hidden="true" class="line-numbers
 <p>1.需求</p>
 <p>在指定目录里建立.txt文件，并在.txt文件里输入”I love cls”</p>
 <p>2.实例实操</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">touch batch.sh
-vim batch.sh
-#!&#x2F;bin&#x2F;bash
-cd &#x2F;home&#x2F;atguigu
-touch cls.txt
-echo &quot;I love cls&quot; &gt;&gt; cls.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">touch batch.sh</span><br><span class="line">vim batch.sh</span><br><span class="line">#!/bin/bash</span><br><span class="line">cd /home/atguigu</span><br><span class="line">touch cls.txt</span><br><span class="line">echo <span class="string">&quot;I love cls&quot;</span> &gt;&gt; cls.txt</span><br></pre></td></tr></table></figure>
 <h2 id="脚本中的变量"><a href="#脚本中的变量" class="headerlink" title="脚本中的变量"></a>脚本中的变量</h2><h3 id="系统变量"><a href="#系统变量" class="headerlink" title="系统变量"></a>系统变量</h3><h4 id="1-常用系统变量"><a href="#1-常用系统变量" class="headerlink" title="1.常用系统变量"></a>1.常用系统变量</h4><p>$HOME, $PWD, $SHELL, $USER等</p>
 <h4 id="2-案例实操"><a href="#2-案例实操" class="headerlink" title="2.案例实操"></a>2.案例实操</h4><h5 id="1-查看系统变量的值"><a href="#1-查看系统变量的值" class="headerlink" title="(1) 查看系统变量的值"></a>(1) 查看系统变量的值</h5><pre><code>[atguigu@hadoop101 datas]$ echo $HOME
 /home/atguigu

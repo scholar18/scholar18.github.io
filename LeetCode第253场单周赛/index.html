@@ -476,18 +476,18 @@ A.检查字符串是否为数组前缀给你一个字符串 s 和一个字符串
 <li>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/check-if-string-is-a-prefix-of-array">https://leetcode-cn.com/problems/check-if-string-is-a-prefix-of-array</a><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2>这题太简单了，没什么好说的。</li>
 </ul>
 <p>挨个遍历即可。</p>
-<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
-public:
-    bool isPrefixString(string s, vector&lt;string&gt;&amp; words) &#123;
-        string s1;
-        int n &#x3D; words.size();
-        for(int i &#x3D; 0;i &lt; n;i++)&#123;
-            s1 +&#x3D; words[i];
-            if(s &#x3D;&#x3D; s1) return true;
-        &#125;
-        return false;
-    &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">bool</span> <span class="token function">isPrefixString</span><span class="token punctuation">(</span>string s<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span>string<span class="token operator">></span><span class="token operator">&amp;</span> words<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        string s1<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> n <span class="token operator">=</span> words<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            s1 <span class="token operator">+=</span> words<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>s <span class="token operator">==</span> s1<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="B-移除石子使总数最小"><a href="#B-移除石子使总数最小" class="headerlink" title="B.移除石子使总数最小"></a>B.移除石子使总数最小</h2><p>给你一个整数数组 piles ，数组 下标从 0 开始 ，其中 piles[i] 表示第 i 堆石子中的石子数量。另给你一个整数 k ，请你执行下述操作 恰好 k 次：</p>
 <p>选出任一石子堆 piles[i] ，并从中 移除 floor(piles[i] / 2) 颗石子。<br>注意：你可以对 同一堆 石子多次执行此操作。</p>
@@ -501,25 +501,25 @@ public:
 <p>进行k次循环，每次移除一处的石头<br>将石头存入队列中，每次去除顶部堆，减去移除的石头数再存入。</p>
 <p>最后将他们加起来，即可得到答案。</p>
 <p>###AC代码</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
-public:
-    int minStoneSum(vector&lt;int&gt;&amp; p, int k) &#123;
-        priority_queue&lt;int&gt; q;
-        int n &#x3D; p.size(),ans &#x3D; 0;
-        for(int i &#x3D; 0;i &lt; n;i++) q.push(p[i]);
-        while(k--)&#123;
-            int temp &#x3D; q.top();
-            q.pop();
-            temp -&#x3D; temp &#x2F; 2;
-            q.push(temp);
-        &#125;
-        while(!q.empty())&#123;
-            ans +&#x3D; q.top();
-            q.pop();
-        &#125;
-        return ans;
-    &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">minStoneSum</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> p<span class="token punctuation">,</span> <span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> q<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> n <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>ans <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>k<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">int</span> temp <span class="token operator">=</span> q<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            temp <span class="token operator">-=</span> temp <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+            q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            ans <span class="token operator">+=</span> q<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="C-使字符串平衡的最小交换次数"><a href="#C-使字符串平衡的最小交换次数" class="headerlink" title="C.使字符串平衡的最小交换次数"></a>C.使字符串平衡的最小交换次数</h2><p>给你一个字符串 s ，下标从 0 开始 ，且长度为偶数 n 。字符串 恰好 由 n / 2 个开括号 ‘[‘ 和 n / 2 个闭括号 ‘]’ 组成。</p>
 <p>只有能满足下述所有条件的字符串才能称为 平衡字符串 ：</p>
@@ -530,23 +530,23 @@ public:
 <li>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-number-of-swaps-to-make-the-string-balanced">https://leetcode-cn.com/problems/minimum-number-of-swaps-to-make-the-string-balanced</a></li>
 </ul>
 <h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><p>所谓平衡字符串就是【 在前，】在后，每一个先出现的【，后面都有一个】可以与之匹配，这题我们就是想找出明明应该后出现的】，却先出现的】，然后将前一半改为【，即可。</p>
-<h3 id="AC代码-1"><a href="#AC代码-1" class="headerlink" title="AC代码"></a>AC代码</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
-public:
-    int minSwaps(string s) &#123;
-        int count &#x3D; 0,res &#x3D; 0;
-        for(auto i:s)&#123;
-            if(i &#x3D;&#x3D; &#39;[&#39;) count++;
-            else&#123;
-                if(count &gt; 0)&#123;
-                    count--;
-                &#125;else&#123;
-                    res++;
-                &#125;
-            &#125;
-        &#125;
-        return (res+1) &#x2F; 2;
-    &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="AC代码-1"><a href="#AC代码-1" class="headerlink" title="AC代码"></a>AC代码</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">minSwaps</span><span class="token punctuation">(</span>string s<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> i<span class="token operator">:</span>s<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">==</span> <span class="token string">'['</span><span class="token punctuation">)</span> count<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>count <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    count<span class="token operator">--</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+                    res<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>res<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="D-找出到每个位置为止最长的有效障碍赛跑路线"><a href="#D-找出到每个位置为止最长的有效障碍赛跑路线" class="headerlink" title="D.找出到每个位置为止最长的有效障碍赛跑路线"></a>D.找出到每个位置为止最长的有效障碍赛跑路线</h2><p>你打算构建一些障碍赛跑路线。给你一个 下标从 0 开始 的整数数组 obstacles ，数组长度为 n ，其中 obstacles[i] 表示第 i 个障碍的高度。</p>
 <p>对于每个介于 0 和 n - 1 之间（包含 0 和 n - 1）的下标  i ，在满足下述条件的前提下，请你找出 obstacles 能构成的最长障碍路线的长度：</p>
 <p>你可以选择下标介于 0 到 i 之间（包含 0 和 i）的任意个障碍。<br>在这条路线中，必须包含第 i 个障碍。<br>你必须按障碍在 obstacles 中的 出现顺序 布置这些障碍。<br>除第一个障碍外，路线中每个障碍的高度都必须和前一个障碍 相同 或者 更高 。<br>返回长度为 n 的答案数组 ans ，其中 ans[i] 是上面所述的下标 i 对应的最长障碍赛跑路线的长度。</p>

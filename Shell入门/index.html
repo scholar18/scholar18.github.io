@@ -471,7 +471,7 @@
 <h3 id="脚本格式"><a href="#脚本格式" class="headerlink" title="脚本格式"></a>脚本格式</h3><ul>
 <li><p>脚本以$#!/bin/bash$ 开头, 表示选用<strong>bash</strong>作为脚本的解释器。</p>
 <h3 id="第一个shell脚本"><a href="#第一个shell脚本" class="headerlink" title="第一个shell脚本"></a>第一个shell脚本</h3><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>创建一个helloworld.sh文件<br>内容为：</p>
-<pre class="line-numbers language-none"><code class="language-none">#!&#x2F;bin&#x2F;bash
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#!&#x2F;bin&#x2F;bash
 echo &quot;HelloWorld Cao sang&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>运行helloworld.sh脚本</p>
 <p>  sh helloworld.sh<br>  或<br>  bash helloworld.sh<br>  或<br>  bash 绝对路径/helloworld.sh<br>  或<br>  sh 绝对路径/helloworld.sh<br>若直接调用 helloworld.sh则权限不够，主要原因是我们用bash,sh解析器运行脚本时，是<strong>解析器去执行helloworld.sh文件</strong>，所以脚本自身<strong>不需要执行权限</strong>。</p>
@@ -490,7 +490,7 @@ echo &quot;HelloWorld Cao sang&quot;<span aria-hidden="true" class="line-numbers
 <p>1.需求</p>
 <p>在指定目录里建立.txt文件，并在.txt文件里输入”I love cls”</p>
 <p>2.实例实操</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">touch batch.sh
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">touch batch.sh
 vim batch.sh
 #!&#x2F;bin&#x2F;bash
 cd &#x2F;home&#x2F;atguigu

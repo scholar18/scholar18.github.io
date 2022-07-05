@@ -481,52 +481,52 @@
 <li>因本思路只用记录边数，不用把点连接起来，所以我们直接用<strong>结构体</strong>记录边即可</li>
 <li>另，因可能存在<strong>负权边</strong>，所以如果<strong>没有</strong>最短路径，dist[n]的答案也可能小于<strong>0x3f3f3f3f</strong>,<strong>最小最小</strong>dist[n]也不会小于<strong>0x3f3f3f3f / 2</strong>,所以我们用这个来判断是否有<strong>最小路径</strong>。<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/855/">https://www.acwing.com/problem/content/855/</a></li>
 </ul>
-<h2 id="ACcode"><a href="#ACcode" class="headerlink" title="ACcode"></a>ACcode</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;cstring&gt;
+<h2 id="ACcode"><a href="#ACcode" class="headerlink" title="ACcode"></a>ACcode</h2><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring></span></span>
 
-using namespace std;
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
-const int N &#x3D; 501, M &#x3D; 10010;
+<span class="token keyword">const</span> <span class="token keyword">int</span> N <span class="token operator">=</span> <span class="token number">501</span><span class="token punctuation">,</span> M <span class="token operator">=</span> <span class="token number">10010</span><span class="token punctuation">;</span>
 
-struct Edge
-&#123;
-    int a, b, w;
-&#125;edges[M];
+<span class="token keyword">struct</span> <span class="token class-name">Edge</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> w<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>edges<span class="token punctuation">[</span>M<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-int last[N];
-int dist[N];
-int n, m, k;
+<span class="token keyword">int</span> last<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> dist<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> n<span class="token punctuation">,</span> m<span class="token punctuation">,</span> k<span class="token punctuation">;</span>
 
-void bellman_ford()
-&#123;
-    memset(dist, 0x3f, sizeof dist);
-    dist[1] &#x3D; 0;
-    for (int i &#x3D; 0; i &lt; k; i ++)
-    &#123;
-        memcpy(last, dist, sizeof dist);
-        for (int j &#x3D; 1; j &lt;&#x3D; m; j ++)
-        &#123;
-            auto x &#x3D; edges[j];
-            dist[x.b] &#x3D; min(dist[x.b], last[x.a] + x.w);
-        &#125;
-    &#125;
-&#125;
-int main()
-&#123;
-    cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;
-    for (int i &#x3D; 1; i &lt;&#x3D; m; i ++)
-    &#123;
-        int a, b, c;
-        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
-        edges[i] &#x3D; &#123;a, b, c&#125;;
-    &#125;
-    bellman_ford();
-    if(dist[n] &gt; 0x3f3f3f3f &#x2F; 2) cout &lt;&lt; &quot;impossible&quot; &lt;&lt; endl;
-    else cout &lt;&lt; dist[n] &lt;&lt; endl;
+<span class="token keyword">void</span> <span class="token function">bellman_ford</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>dist<span class="token punctuation">,</span> <span class="token number">0x3f</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span> dist<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    dist<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> k<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">memcpy</span><span class="token punctuation">(</span>last<span class="token punctuation">,</span> dist<span class="token punctuation">,</span> <span class="token keyword">sizeof</span> dist<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span> j <span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">auto</span> x <span class="token operator">=</span> edges<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            dist<span class="token punctuation">[</span>x<span class="token punctuation">.</span>b<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>dist<span class="token punctuation">[</span>x<span class="token punctuation">.</span>b<span class="token punctuation">]</span><span class="token punctuation">,</span> last<span class="token punctuation">[</span>x<span class="token punctuation">.</span>a<span class="token punctuation">]</span> <span class="token operator">+</span> x<span class="token punctuation">.</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    cin <span class="token operator">>></span> n <span class="token operator">>></span> m <span class="token operator">>></span> k<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">;</span>
+        cin <span class="token operator">>></span> a <span class="token operator">>></span> b <span class="token operator">>></span> c<span class="token punctuation">;</span>
+        edges<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">bellman_ford</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>dist<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0x3f3f3f3f</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span> cout <span class="token operator">&lt;&lt;</span> <span class="token string">"impossible"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">else</span> cout <span class="token operator">&lt;&lt;</span> dist<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
     
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>

@@ -486,52 +486,52 @@
 <li>3.然后问题转为求index数组的<strong>最长递增子序列</strong>，动态规划即可解决，但本题数据规模较大，须采用贪心+<strong>二分查找</strong></li>
 <li>4.创建一个d数组，存放最长递增子序列，贪心即为，总是查找index中大于d[len]的最小值，将其纳入d数组中，遇到小于d[len]的值，则通过<strong>二分查找</strong>，找到第一个不大于index[i]的数，将index[i]放在该数的下一项.</li>
 </ul>
-<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
-public:
-    int minOperations(vector&lt;int&gt;&amp; target, vector&lt;int&gt;&amp; arr) &#123;
-        int m &#x3D; target.size(), n &#x3D; arr.size();
-        unordered_map &lt;int, int&gt; map;
-        vector &lt;int&gt; index;
-        for(int i &#x3D; 0; i &lt; m; i++)
-            map[target[i]] &#x3D; i+1;&#x2F;&#x2F;i+1是为了避免下标为0时造成的漏判
-        for(int i &#x3D; 0; i &lt; n; i++)
-            if(map[arr[i]])
-                index.push_back(map[arr[i]]);&#x2F;&#x2F;将arr中出现的target元素依次记录下来
-        if(index.size() &#x3D;&#x3D; 0)
-            return m;&#x2F;&#x2F;特殊情况判断，没有公共子序列,直接返回target数组的长度
+<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">minOperations</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> target<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> arr<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> m <span class="token operator">=</span> target<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> n <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        unordered_map <span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span> map<span class="token punctuation">;</span>
+        vector <span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> index<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+            map<span class="token punctuation">[</span>target<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment">//i+1是为了避免下标为0时造成的漏判</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>map<span class="token punctuation">[</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                index<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>map<span class="token punctuation">[</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//将arr中出现的target元素依次记录下来</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>index<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> m<span class="token punctuation">;</span><span class="token comment">//特殊情况判断，没有公共子序列,直接返回target数组的长度</span>
 
-        &#x2F;&#x2F; 二分查找 arr 的最长递增子序列
-        &#x2F;&#x2F;如果index[i] &gt; d[len] ，则直接加入到 d 数组末尾，并更新 d[len+1]&#x3D;index[i]
-        &#x2F;&#x2F;否则，在 d 数组中二分查找，找到第一个比index[i]小的数d[k]，并更新d[k + 1]&#x3D;index[i]。这一步的意思是长度为k+1的公共子序列的末尾元素的最小值更新为index[i]
+        <span class="token comment">// 二分查找 arr 的最长递增子序列</span>
+        <span class="token comment">//如果index[i] > d[len] ，则直接加入到 d 数组末尾，并更新 d[len+1]=index[i]</span>
+        <span class="token comment">//否则，在 d 数组中二分查找，找到第一个比index[i]小的数d[k]，并更新d[k + 1]=index[i]。这一步的意思是长度为k+1的公共子序列的末尾元素的最小值更新为index[i]</span>
 
-        n &#x3D; index.size();
-        int len &#x3D; 1;
-        vector&lt;int&gt; d(n + 1, 0);
-        d[len] &#x3D; index[0];
-        for (int i &#x3D; 1; i &lt; n; ++i) 
-        &#123;
-            if (index[i] &gt; d[len])
-                d[++len] &#x3D; index[i];
-            else 
-            &#123;
-                int l &#x3D; 1, r &#x3D; len, pos &#x3D; 0; &#x2F;&#x2F; 如果找不到说明所有的数都比 index[i] 大，此时要更新 d[1]，所以这里将 pos 设为 0
-                while (l &lt;&#x3D; r) 
-                &#123;
-                    int mid &#x3D; (l + r) &gt;&gt; 1;
-                    if (d[mid] &lt; index[i]) 
-                    &#123;
-                        pos &#x3D; mid;
-                        l &#x3D; mid + 1;
-                    &#125; 
-                    else
-                        r &#x3D; mid - 1;
-                &#125;
-                d[pos + 1] &#x3D; index[i];&#x2F;&#x2F;在第一个比index[i]小的元素后面插入index[i]
-            &#125;
-        &#125;
-        return m - len;
-    &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        n <span class="token operator">=</span> index<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">d</span><span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        d<span class="token punctuation">[</span>len<span class="token punctuation">]</span> <span class="token operator">=</span> index<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> 
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>index<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> d<span class="token punctuation">[</span>len<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                d<span class="token punctuation">[</span><span class="token operator">++</span>len<span class="token punctuation">]</span> <span class="token operator">=</span> index<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span> 
+            <span class="token punctuation">&#123;</span>
+                <span class="token keyword">int</span> l <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> r <span class="token operator">=</span> len<span class="token punctuation">,</span> pos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 如果找不到说明所有的数都比 index[i] 大，此时要更新 d[1]，所以这里将 pos 设为 0</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span>l <span class="token operator">&lt;=</span> r<span class="token punctuation">)</span> 
+                <span class="token punctuation">&#123;</span>
+                    <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>l <span class="token operator">+</span> r<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>d<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> index<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> 
+                    <span class="token punctuation">&#123;</span>
+                        pos <span class="token operator">=</span> mid<span class="token punctuation">;</span>
+                        l <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">&#125;</span> 
+                    <span class="token keyword">else</span>
+                        r <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                d<span class="token punctuation">[</span>pos <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> index<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//在第一个比index[i]小的元素后面插入index[i]</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> m <span class="token operator">-</span> len<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>

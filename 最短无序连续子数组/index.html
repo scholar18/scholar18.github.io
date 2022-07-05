@@ -481,18 +481,18 @@
 <h2 id="示例二"><a href="#示例二" class="headerlink" title="示例二"></a>示例二</h2><p>输入：nums = [1,2,3,4]<br>输出：0</p>
 <h2 id="示例三"><a href="#示例三" class="headerlink" title="示例三"></a>示例三</h2><p>输入：nums = [1]<br>输出：0</p>
 <h2 id="思路一"><a href="#思路一" class="headerlink" title="思路一"></a>思路一</h2><p>新建一个数组，并排序，使用双指针，分别由前往后，有后往前，找到与愿数组第一个不同的下表记录，即找到需要排序的范围</p>
-<h2 id="AC代码一"><a href="#AC代码一" class="headerlink" title="AC代码一"></a>AC代码一</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
-public:
-    int findUnsortedSubarray(vector&lt;int&gt;&amp; nums) &#123;
-        int n &#x3D; nums.size();    
-        vector&lt;int&gt; arr &#x3D; nums;
-        sort(arr.begin(),arr.end());
-        int i &#x3D; 0, j &#x3D; n - 1;
-        while (i &lt;&#x3D; j &amp;&amp; nums[i] &#x3D;&#x3D; arr[i]) i++;
-        while (i &lt;&#x3D; j &amp;&amp; nums[j] &#x3D;&#x3D; arr[j]) j--;
-        return j - i + 1;
-    &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="AC代码一"><a href="#AC代码一" class="headerlink" title="AC代码一"></a>AC代码一</h2><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">findUnsortedSubarray</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> n <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> arr <span class="token operator">=</span> nums<span class="token punctuation">;</span>
+        <span class="token function">sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>arr<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> j <span class="token operator">=</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;=</span> j <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> i<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;=</span> j <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> j<span class="token operator">--</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> j <span class="token operator">-</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="思路二"><a href="#思路二" class="headerlink" title="思路二"></a>思路二</h2><p>三段处理，一三两端是不用排序的，中间一段是<strong>需要排序</strong>的。</p>
 <p>我们先找到第一个<strong>不符合升序</strong>的下标i，在找到最后一个<strong>不符合升序</strong>的下标j，这就简单分成了三段</p>
 <p>第一段 [0,i), <strong>第二段[i,j]</strong>, 第三段(j,n].<br>之后我们遍历第二段，遍历下标先用x代替</p>
@@ -506,28 +506,28 @@ public:
 <li>若<strong>i = j</strong>，结果为 <strong>0</strong>.</li>
 </ul>
 <p>另，借助哨兵，进行一些细微调整。</p>
-<h2 id="AC代码二"><a href="#AC代码二" class="headerlink" title="AC代码二"></a>AC代码二</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
-public:
-    int findUnsortedSubarray(vector&lt;int&gt;&amp; nums) &#123;
-        int MAX &#x3D; 100005,MIN &#x3D; -100005;
-        int i &#x3D; 0,j &#x3D; nums.size() - 1;
-        while(i &lt; j &amp;&amp; nums[i] &lt;&#x3D; nums[i+1]) i++;
-        while(i &lt; j &amp;&amp; nums[j] &gt;&#x3D; nums[j-1]) j--;
-        int l &#x3D; i,r &#x3D; j;
-        int min &#x3D; nums[i],max &#x3D; nums[j];
-        for(int x &#x3D; l;x &lt;&#x3D; r;x++)&#123;
-            if(nums[x] &lt; min)&#123;
-                while(i &gt;&#x3D; 0 &amp;&amp; nums[x] &lt; nums[i])i--;
-                min &#x3D; i &gt;&#x3D; 0 ?nums[i]:MIN;
-            &#125;
-            if(nums[x] &gt; max)&#123;
-                while(j &lt; nums.size() &amp;&amp; nums[x] &gt; nums[j])j++;
-                max &#x3D; j &lt; nums.size()?nums[j]:MAX;
-            &#125;
-        &#125;
-        return i &#x3D;&#x3D; j ? 0 : (j - 1) - (i + 1) + 1;
-    &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="AC代码二"><a href="#AC代码二" class="headerlink" title="AC代码二"></a>AC代码二</h2><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">findUnsortedSubarray</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> MAX <span class="token operator">=</span> <span class="token number">100005</span><span class="token punctuation">,</span>MIN <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">100005</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>j <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>i <span class="token operator">&lt;</span> j <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> nums<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> i<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>i <span class="token operator">&lt;</span> j <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">>=</span> nums<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> j<span class="token operator">--</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> l <span class="token operator">=</span> i<span class="token punctuation">,</span>r <span class="token operator">=</span> j<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> min <span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>max <span class="token operator">=</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> l<span class="token punctuation">;</span>x <span class="token operator">&lt;=</span> r<span class="token punctuation">;</span>x<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">&lt;</span> min<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">while</span><span class="token punctuation">(</span>i <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>i<span class="token operator">--</span><span class="token punctuation">;</span>
+                min <span class="token operator">=</span> i <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">?</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">:</span>MIN<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">></span> max<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">while</span><span class="token punctuation">(</span>j <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">></span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>j<span class="token operator">++</span><span class="token punctuation">;</span>
+                max <span class="token operator">=</span> j <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">?</span>nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">:</span>MAX<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> i <span class="token operator">==</span> j <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span> <span class="token punctuation">(</span>j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
